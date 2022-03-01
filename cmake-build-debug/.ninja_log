@@ -1,0 +1,16 @@
+# ninja log v5
+3	249	6634687020915070	CMakeFiles/Trab2D.dir/player.cpp.obj	9c93ededa1b82edc
+4	302	6634688728770714	CMakeFiles/Trab2D.dir/main.cpp.obj	db806b19c3aca0e0
+239	2620	6652809492620052	CMakeFiles/Trabalhocg.dir/player.cpp.obj	5cadf5f47a1f7a0f
+1	390	6634087794668105	CMakeFiles/Trab2D.dir/main(old).cpp.obj	5d0e3b25dc3390ad
+835	1121	6655217817474435	Trabalhocg.exe	5c37975fa51d50dd
+3	834	6655217814654186	CMakeFiles/Trabalhocg.dir/main.cpp.obj	a2f833ed5e6a2e5c
+2	2642	6652809492850069	CMakeFiles/Trabalhocg.dir/tinyxml2.cpp.obj	8e69b109adb09a86
+20	484	6655217811054212	CMakeFiles/Trabalhocg.dir/Cenario.cpp.obj	43cc6f123526d79d
+2290	2841	6652809494860075	CMakeFiles/Trabalhocg.dir/tiro.cpp.obj	c1a47c983e033d1e
+31	2415	6653680338250109	CMakeFiles/Trabalhocg.dir/enemy.cpp.obj	5370939fe76bb14b
+248	2290	6652809488880078	CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj	1188d87849f88ac6
+0	40	0	clean	1ccdf09b723db04
+149	2044	6658079262563151	CMakeFiles/Trabalhocg.dir/Cenario.cpp.obj	43cc6f123526d79d
+3	2162	6658079263753136	CMakeFiles/Trabalhocg.dir/main.cpp.obj	a2f833ed5e6a2e5c
+2162	2855	6658079270565538	Trabalhocg.exe	5c37975fa51d50dd

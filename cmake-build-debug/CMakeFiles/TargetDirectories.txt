@@ -1,0 +1,3 @@
+C:/Users/lucas/Desktop/Trab2D/cmake-build-debug/CMakeFiles/Trabalhocg.dir
+C:/Users/lucas/Desktop/Trab2D/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/lucas/Desktop/Trab2D/cmake-build-debug/CMakeFiles/rebuild_cache.dir

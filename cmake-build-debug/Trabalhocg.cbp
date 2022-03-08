@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Trabalhocg"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Trabalhocg">
+				<Option output="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Trabalhocg.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/MinGW/freeglut/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 Trabalhocg"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Trabalhocg/fast">
+				<Option output="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Trabalhocg.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/MinGW/freeglut/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/9.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 Trabalhocg/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/Cenario.cpp">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/Cenario.h">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/enemy.cpp">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/enemy.h">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/enemyTiro.cpp">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/enemyTiro.h">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/main.cpp">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/player.cpp">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/player.h">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/tinyxml2.cpp">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/tinyxml2.h">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/tiro.cpp">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/tiro.h">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

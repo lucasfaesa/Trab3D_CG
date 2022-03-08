@@ -29,6 +29,8 @@ bool test = false;
 Boxes boxesArray[50] = {};
 Enemies enemiesArray[7] = {};
 
+bool manuallySetPath;
+
 bool playerCollidingOnRightSide;
 bool playerCollidingOnLeftSide;
 bool playerCollidingBottom;
@@ -93,6 +95,13 @@ void CheckPlayerGameWon();
 void ResetGame();
 
 void RandomEnemyShoot(GLdouble diference);
+
+void init(int i);
+void display();
+
+void DrawAxes(double d);
+
+void DrawObj(double d);
 
 // Window dimensions
 const GLint Width = 500;
@@ -242,17 +251,25 @@ void init(int w, int h)
     }
 
     ResetKeyStatus();
+
     // The color the windows will redraw. Its done to erase the previous frame.
     int R  = 1;
     int G = 0.2;
     int B = 1;
-    glClearColor(R,G,B, 1);
+    //glClearColor(R,G,B, 1);
+    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glViewport (0, 0, (GLsizei) Width,(GLsizei) Width);
     glMatrixMode(GL_PROJECTION); // Select the projection matrix
 
     glEnable(GL_BLEND); //Enable blending.
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //Set blending function.
 
-    gluOrtho2D(-45.9,45.9,-45.9,45.9);
+
+    glLoadIdentity();
+
+    glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
+    gluPerspective (50,(GLfloat)Width/(GLfloat)Width,0.1, 100);
+    //glOrtho(-45.9,45.9,-45.9,45.9, 0.1,100);
     glMatrixMode(GL_MODELVIEW); // Select the projection matrix
     glLoadIdentity();
 }
@@ -279,7 +296,7 @@ void idle(void)
     CheckEnemiesCollision();
     MoveEnemies(timeDiference);
     CheckPlayerGameWon();
-    MoveCamera();
+    //MoveCamera();
 
     if(isJumping && pressingJumpKey){
         Player.MoveEmY(yVel, isJumping);
@@ -754,16 +771,21 @@ void MyMouse(int button, int state, int x, int y)
 
 int main(int argc, char *argv[])
 {
-    string x;
-    cout << "Caminho do SVG:"; // Type a number and press enter
-    getline(cin, x);
-    Cenario.SetImagePath(x.c_str());
-    Enemy.SetImagePath(x.c_str());
+   /* if(manuallySetPath){
+        string x;
+        cout << "Caminho do SVG:"; // Type a number and press enter
+        getline(cin, x);
+        Cenario.SetImagePath(x.c_str());
+        Enemy.SetImagePath(x.c_str());
+    }else{
+        Cenario.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
+        Enemy.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
+    }
 
     // Initialize openGL with Double buffer and RGB color without transparency.
     // Its interesting to try GLUT_SINGLE instead of GLUT_DOUBLE.
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 
     // Create the window.
     glutInitWindowSize(Width, Height);
@@ -782,6 +804,130 @@ int main(int argc, char *argv[])
 
     glutMainLoop();
 
+    return 0;*/
+
+    int windowSize = 500;
+    glutInit(&argc, argv);
+    glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize (windowSize, windowSize);
+    glutInitWindowPosition (100, 100);
+    glutCreateWindow (argv[0]);
+    init(windowSize);
+    glutDisplayFunc(display);
+    glutMainLoop();
     return 0;
+}
+void display(void)
+{
+    glClear (   GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    gluLookAt(60,-20,150, 20,-180,0, 0,1,0);
+
+    //GLfloat light_position[] = { 0.0, 3.0, 10.0, 1.0 };
+    //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
+
+    Cenario.GetFromSvg();
+    Cenario.Desenha();
+
+    DrawAxes(1.5);
+
+    DrawObj(1.0);
+
+    glutSwapBuffers();
+}
+
+void DrawObj(double size) {
+    /*GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1.0};
+    GLfloat materialColor[] = { 1.0, 1.0, 0.0, 1.0};
+    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0};
+    GLfloat mat_shininess[] = { 128 };
+    glMaterialfv(GL_FRONT, GL_EMISSION, materialEmission);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, materialColor);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, materialColor);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);*/
+    glColor3f(1,0,0);
+
+    glPushMatrix();
+    glTranslatef(20,180,0);
+    glutSolidCube(size);
+    glPopMatrix();
+//   glutSolidSphere(size, 20, 10);
+}
+
+void DrawAxes(double size) {
+    GLfloat mat_ambient_r[] = { 1.0, 0.0, 0.0, 1.0 };
+    GLfloat mat_ambient_g[] = { 0.0, 1.0, 0.0, 1.0 };
+    GLfloat mat_ambient_b[] = { 0.0, 0.0, 1.0, 1.0 };
+    GLfloat no_mat[] = { 0.0, 0.0, 0.0, 1.0 };
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE,
+                 no_mat);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
+    glMaterialfv(GL_FRONT, GL_SHININESS, no_mat);
+
+    //x axis red
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_EMISSION,
+                 mat_ambient_r);
+    glColor3fv(mat_ambient_r);
+    glScalef(size, size*0.1, size*0.1);
+    glTranslatef(0.5, 0, 0); // put in one end
+    glutSolidCube(1.0);
+    glPopMatrix();
+
+    //y axis green
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_EMISSION,
+                 mat_ambient_g);
+    glColor3fv(mat_ambient_g);
+    glRotatef(90,0,0,1);
+    glScalef(size, size*0.1, size*0.1);
+    glTranslatef(0.5, 0, 0); // put in one end
+    glutSolidCube(1.0);
+    glPopMatrix();
+
+    //z axis blue
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_EMISSION, mat_ambient_b);
+    glColor3fv(mat_ambient_b);
+    glRotatef(-90,0,1,0);
+    glScalef(size, size*0.1, size*0.1);
+    glTranslatef(0.5, 0, 0); // put in one end
+    glutSolidCube(1.0);
+    glPopMatrix();
+}
+
+void init(int windowSize) {
+    if(manuallySetPath){
+        string x;
+        cout << "Caminho do SVG:"; // Type a number and press enter
+        getline(cin, x);
+        Cenario.SetImagePath(x.c_str());
+        Enemy.SetImagePath(x.c_str());
+    }else {
+        Cenario.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
+        Enemy.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
+    }
+
+    glClearColor (1.0, 0.3, 0.0, 0.0);
+    //glShadeModel (GL_FLAT);
+    glShadeModel (GL_SMOOTH);
+    glEnable(GL_CULL_FACE);
+    //glFrontFace(GL_CW);
+    //glCullFace(GL_BACK);
+    /*
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);*/
+    glEnable(GL_DEPTH_TEST);
+    glViewport (0, 0, (GLsizei) windowSize,(GLsizei) windowSize);
+    glMatrixMode (GL_PROJECTION);
+    glLoadIdentity();
+
+
+    gluPerspective (50,(GLfloat)windowSize/(GLfloat)windowSize,0.1, 1000);
+    //glOrtho (-3, 3, -3*(GLfloat)windowSize/(GLfloat)windowSize, 3*(GLfloat)windowSize/(GLfloat)windowSize, 1.0, 15.0);
 }
 

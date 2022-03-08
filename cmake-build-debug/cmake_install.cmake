@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/lucas/Desktop/Trab2D
+# Install script for directory: C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Trab2D")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Trabalhocg")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/lucas/Desktop/Trab2D/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

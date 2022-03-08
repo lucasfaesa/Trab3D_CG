@@ -1,10 +1,14 @@
 #include "Cenario.h"
 #include "tinyxml2.h"
 #include <string>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
 #include <cmath>
 using namespace std;
 
 int cont = 0;
+int zzzz = 0;
 
 void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, string color)
 {
@@ -21,17 +25,91 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
         B = 0;
     }
 
-    glPushMatrix();
-    glTranslatef(x+width/2,y,0);
-    glBegin(GL_QUADS);
+    if(color == "blue"){
+        return;
+    }
 
-    glColor3f(R,G,B);// Face posterior
-    //glNormal3f(0.0, 0.0, 1.0);	// Normal da face
-    glVertex2f(width/2, height);
+    glPushMatrix();
+
+    glTranslatef(x+width/2,y,0);
+    /*glTranslatef(x,y,0);
+
+    glColor3f(1,1,0);// Face posterior
+    glutSolidCube(2.0);*/
+
+    //height = -height;
+
+    glBegin(GL_QUADS);
+        glColor3f(1,0,0.3);// Face posterior
+        glNormal3f(0.0, 0.0, 1.0);	// Normal da face
+        glVertex3f(width/2, 0, 45.8);
+        glVertex3f(-width/2, 0, 45.8);
+        glVertex3f(-width/2,height, 45.8);
+        glVertex3f(width/2, height, 45.8); //z metade da altura do fundo azul
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(1,0,0);// Face  traseira
+        glNormal3f(0.0, 0.0, -1.0);	// Normal da face
+        glVertex3f(-width/2, height, -0);
+        glVertex3f(-width/2, 0, -0);
+        glVertex3f(width/2,0, -0);
+        glVertex3f(width/2, height, -0); //z metade da altura do fundo azul
+
+
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(0,1,0);// Face lateral esquerda
+        glNormal3f(-1.0, 0.0, 0.0);	// Normal da face
+        glVertex3f(-width/2, 0, 45.8);
+        glVertex3f(-width/2, 0, -0);
+        glVertex3f(-width/2,height, -0);
+        glVertex3f(-width/2, height, 45.8); //z metade da altura do fundo azul
+
+
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(1.0,0,0);// Face lateral direita
+        glNormal3f(1.0, 0.0, 0.0);	// Normal da face
+        glVertex3f(width/2, height, -0);
+        glVertex3f(width/2, 0, -0);
+        glVertex3f(width/2,0, 45.8);
+        glVertex3f(width/2, height, 45.8); //z metade da altura do fundo azul
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(1,1,0);// Face superior
+        glNormal3f(0.0, -1.0, 0.0);	// Normal da face
+        glVertex3f(-width/2, 0, 45.8);
+        glVertex3f(width/2, 0, 45.8);
+        glVertex3f(width/2,0, -0);
+        glVertex3f(-width/2, 0, -0); //z metade da altura do fundo azul
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(1,1,1);// Face inferior
+        glNormal3f(0.0, 1.0, 0.0);	// Normal da face
+        glVertex3f(width/2, height, -0);
+        glVertex3f(width/2, height, 45.8);
+        glVertex3f(-width/2,height, 45.8);
+        glVertex3f(-width/2, height, -0); //z metade da altura do fundo azul
+    glEnd();
+
+
+
+
+
+    /*glVertex2f(width/2, height); //z metade da altura do fundo azul
     glVertex2f(-width/2,height);
     glVertex2f(-width/2, 0);
-    glVertex2f(width/2, 0);
-    glEnd();
+    glVertex2f(width/2, 0);*/
+
+
 
     glPopMatrix();
 }
@@ -116,7 +194,7 @@ void Cenario::GetCenarioFromSvg() {
     }
 
     //#temp
-    Cenario::AddBoxesToArray(cont, -163.5, -187.2, -10,364.1373,"black");
+   // Cenario::AddBoxesToArray(cont, -163.5, -187.2, -10,364.1373,"black");
     //#temp
     cont = 0;
 }

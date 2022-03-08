@@ -711,6 +711,30 @@ CMakeFiles/Trabalhocg.dir/player.cpp.obj
  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/ostream.tcc
  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/istream
  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc
+ C:/MinGW/freeglut/include/GL/glut.h
+ C:/MinGW/freeglut/include/GL/freeglut_std.h
+ C:/MinGW/include/windows.h
+ C:/MinGW/include/windef.h
+ C:/MinGW/include/winnt.h
+ C:/MinGW/include/winerror.h
+ C:/MinGW/include/string.h
+ C:/MinGW/include/strings.h
+ C:/MinGW/include/wchar.h
+ C:/MinGW/include/basetsd.h
+ C:/MinGW/include/pshpack4.h
+ C:/MinGW/include/poppack.h
+ C:/MinGW/include/wincon.h
+ C:/MinGW/include/winbase.h
+ C:/MinGW/include/wingdi.h
+ C:/MinGW/include/winuser.h
+ C:/MinGW/include/dbt.h
+ C:/MinGW/include/winnls.h
+ C:/MinGW/include/winver.h
+ C:/MinGW/include/winnetwk.h
+ C:/MinGW/include/winreg.h
+ C:/MinGW/include/reason.h
+ C:/MinGW/include/winsvc.h
+ C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/stdlib.h
 
 CMakeFiles/Trabalhocg.dir/tinyxml2.cpp.obj
  C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/tinyxml2.cpp

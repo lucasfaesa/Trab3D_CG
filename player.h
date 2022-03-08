@@ -19,7 +19,7 @@ class Player {
 
 
 private:
-void DesenhaRect(GLfloat height, GLfloat width, GLfloat R, GLfloat G, GLfloat B, GLfloat A);
+void DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloat R, GLfloat G, GLfloat B, GLfloat A);
 void DesenhaCabeca(GLfloat x, GLfloat y, GLfloat radius, GLfloat R,GLfloat G, GLfloat B);
 void DesenhaPerna(GLfloat x, GLfloat y, GLfloat theta1, GLfloat theta2, GLfloat theta3, GLfloat theta4);
 void DesenhaBraco(GLfloat x, GLfloat y, GLfloat theta1);

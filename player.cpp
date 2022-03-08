@@ -3,15 +3,19 @@
 #include <cmath>
 #include <iostream>
 #include <cstdlib>
+#include <GL/glut.h>
 
 
 float CabecaRadius = 1;
 float troncoHeight  = 3.8;
 float troncoWidth  = 2;
+float troncoExtrusion = 1.5;
 float bracoHeight  = 3;
 float bracoWidth  = 0.5;
+float bracoExtrusion = 0.5;
 float pernaHeight  = 1.8;
 float pernaWidth  = 0.5;
+float pernaExtrusion = 0.5;
 
 float jumpUpDistanceTraveled = 0;
 float maxJumpHeight = 0 ; //TODO tamanho do corpo do boneco
@@ -46,56 +50,54 @@ float minRotE2 = 0;
 bool reversed;
 
 
-void Player::DesenhaRect(GLfloat height, GLfloat width, GLfloat R, GLfloat G, GLfloat B,GLfloat A)
+void Player::DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloat R, GLfloat G, GLfloat B,GLfloat A)
 {
-    std::cout << "drawing" << std::endl;
-
     glBegin(GL_QUADS);
         glColor3f(R,G,B);// Face posterior
-        glVertex3f(width/2, height, 5.0);
-        glVertex3f(-width/2, height, 5.0);
-        glVertex3f(-width/2, 0.0, 5.0);
-        glVertex3f(width/2, 0.0, 5.0);
+        glVertex3f(width/2, height, extrusion/2);
+        glVertex3f(-width/2, height, extrusion/2);
+        glVertex3f(-width/2, 0.0, extrusion/2);
+        glVertex3f(width/2, 0.0, extrusion/2);
     glEnd();
 
     glBegin(GL_QUADS);
         glColor3f(R,G,B);// Face anterior
-        glVertex3f(width/2, height, 0);
-        glVertex3f(width/2, 0, 0);
-        glVertex3f(-width/2, 0.0, 0);
-        glVertex3f(-width/2, height, 0);
+        glVertex3f(width/2, height, -extrusion/2);
+        glVertex3f(width/2, 0, -extrusion/2);
+        glVertex3f(-width/2, 0.0, -extrusion/2);
+        glVertex3f(-width/2, height, -extrusion/2);
     glEnd();
 
     glBegin(GL_QUADS);
         glColor3f(R,G,B);// Face lateral esquerda
-        glVertex3f(-width/2, height, 5.0);
-        glVertex3f(-width/2, height, 0);
-        glVertex3f(-width/2, 0.0, 0);
-        glVertex3f(-width/2, 0, 5.0);
+        glVertex3f(-width/2, height, extrusion/2);
+        glVertex3f(-width/2, height, -extrusion/2);
+        glVertex3f(-width/2, 0.0, -extrusion/2);
+        glVertex3f(-width/2, 0, extrusion/2);
     glEnd();
 
     glBegin(GL_QUADS);
         glColor3f(R,G,B);// Face lateral direita
-        glVertex3f(width/2, height, 5.0);
-        glVertex3f(width/2, 0, 5.0);
-        glVertex3f(width/2, 0, 0);
-        glVertex3f(width/2, height, 0);
+        glVertex3f(width/2, height, extrusion/2);
+        glVertex3f(width/2, 0, extrusion/2);
+        glVertex3f(width/2, 0, -extrusion/2);
+        glVertex3f(width/2, height, -extrusion/2);
     glEnd();
 
     glBegin(GL_QUADS);
         glColor3f(R,G,B);// Face superior
-        glVertex3f(-width/2, height, 0);
-        glVertex3f(-width/2, height, 5.0);
-        glVertex3f(width/2, height, 5.0);
-        glVertex3f(width/2, height, 0);
+        glVertex3f(-width/2, height, -extrusion/2);
+        glVertex3f(-width/2, height, extrusion/2);
+        glVertex3f(width/2, height, extrusion/2);
+        glVertex3f(width/2, height, -extrusion/2);
     glEnd();
 
     glBegin(GL_QUADS);
         glColor3f(R,G,B);// Face inferior
-        glVertex3f(-width/2, 0, 0);
-        glVertex3f(width/2, 0, 0);
-        glVertex3f(width/2, 0, 5.0);
-        glVertex3f(-width/2, 0, 5.0);
+        glVertex3f(-width/2, 0, -extrusion/2);
+        glVertex3f(width/2, 0, -extrusion/2);
+        glVertex3f(width/2, 0, extrusion/2);
+        glVertex3f(-width/2, 0, extrusion/2);
     glEnd();
 
 }
@@ -108,14 +110,15 @@ void Player::DesenhaCabeca(GLfloat x, GLfloat y, GLfloat radius, GLfloat R, GLfl
     else
         glScalef(-1,1,1);
 
-    glColor3f(R,G,B);
+    glutSolidSphere(radius,20,10);
+    /*glColor3f(R,G,B);
     glBegin(GL_POLYGON);
     for(int i=0; i<20; i++){
         double angle = i *(2.0 * M_PI/20);
         glVertex2f(radius*cos(angle), radius*sin(angle));
     }
 
-    glEnd();
+    glEnd();*/
     glPopMatrix();
 }
 
@@ -129,7 +132,7 @@ void Player::DesenhaBraco(GLfloat x, GLfloat y, GLfloat theta1)
     else
         glScalef(-1,1,1);
 
-    DesenhaRect(bracoHeight,bracoWidth,1,1,0,1);
+    DesenhaRect(bracoHeight,bracoWidth,bracoExtrusion,1,1,0,1);
     glPopMatrix();
 }
 
@@ -144,10 +147,10 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
         else
             glScalef(-1,1,1);
         glRotatef(pEtheta1,0,0,1);
-        DesenhaRect(-pernaHeight,pernaWidth,0,1,0,1); //desenhando primeira perna esquerda
+        DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,0,1,0,1); //desenhando primeira perna esquerda
         glTranslatef(0,-pernaHeight,0);
         glRotatef(pEtheta2,0,0,1);
-        DesenhaRect(-pernaHeight,pernaWidth,1,1,0,1); //desenhando segunda perna esquerda
+        DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,1,1,0,1); //desenhando segunda perna esquerda
         glPopMatrix();
 
         glPushMatrix();
@@ -157,10 +160,10 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
         else
             glScalef(-1,1,1);
         glRotatef(pDtheta1,0,0,1);
-        DesenhaRect(-pernaHeight,pernaWidth,1,0,0,1); //desenhando primeira perna direita
+        DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,1,0,0,1); //desenhando primeira perna direita
         glTranslatef(0,-pernaHeight,0);
         glRotatef(pDtheta2,0,0,1);
-        DesenhaRect(-pernaHeight,pernaWidth,1,1,1,1); //desenhando segunda perna direita*/
+        DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,1,1,1,1); //desenhando segunda perna direita*/
         glPopMatrix();
     }else{
         glPushMatrix();
@@ -170,10 +173,10 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
         else
             glScalef(-1,1,1);
         glRotatef(pDtheta1,0,0,1);
-        DesenhaRect(-pernaHeight,pernaWidth,1,0,0,1); //desenhando primeira perna direita
+        DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,1,0,0,1); //desenhando primeira perna direita
         glTranslatef(0,-pernaHeight,0);
         glRotatef(pDtheta2,0,0,1);
-        DesenhaRect(-pernaHeight,pernaWidth,1,1,1,1); //desenhando segunda perna direita*/
+        DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,1,1,1,1); //desenhando segunda perna direita*/
         glPopMatrix();
 
         if(facingRight)
@@ -181,10 +184,10 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
         else
             glScalef(-1,1,1);
         glRotatef(pEtheta1,0,0,1);
-        DesenhaRect(-pernaHeight,pernaWidth,0,1,0,1); //desenhando primeira perna esquerda
+        DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,0,1,0,1); //desenhando primeira perna esquerda
         glTranslatef(0,-pernaHeight,0);
         glRotatef(pEtheta2,0,0,1);
-        DesenhaRect(-pernaHeight,pernaWidth,1,1,0,1); //desenhando segunda perna esquerda
+        DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,1,1,0,1); //desenhando segunda perna esquerda
         glPopMatrix();
     }
 
@@ -192,64 +195,12 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
 
 void Player::DesenhaPlayer(GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2)
 {
-    //glLoadIdentity();
-   //glFlush();
-    /*std::cout << "drawing" << std::endl;
-    glPushMatrix();
-    glTranslatef(x,y,0);
-    glBegin(GL_QUADS);
-    glColor3f(1,0,1);// Face posterior
-    glVertex3f(10, 10, 5.0);
-    glVertex3f(-10, 10, 5.0);
-    glVertex3f(-10, 0.0, 5.0);
-    glVertex3f(10, 0.0, 5.0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(1,1,0);// Face anterior
-    glVertex3f(10, 10, 0);
-    glVertex3f(10, 0, 0);
-    glVertex3f(-10, 0.0, 0);
-    glVertex3f(-10, 10, 0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(1,1,1);// Face lateral esquerda
-    glVertex3f(-10, 10, 5.0);
-    glVertex3f(-10, 10, 0);
-    glVertex3f(-10, 0.0, 0);
-    glVertex3f(-10, 0, 5.0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(0,1,1);// Face lateral direita
-    glVertex3f(10, 10, 5.0);
-    glVertex3f(10, 0, 5.0);
-    glVertex3f(10, 0, 0);
-    glVertex3f(10, 10, 0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(0,0,1);// Face superior
-    glVertex3f(-10, 10, 0);
-    glVertex3f(-10, 10, 5.0);
-    glVertex3f(10, 10, 5.0);
-    glVertex3f(10, 10, 0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(0,0,0);// Face inferior
-    glVertex3f(-10, 0, 0);
-    glVertex3f(10, 0, 0);
-    glVertex3f(10, 0, 5.0);
-    glVertex3f(-10, 0, 5.0);
-    glEnd();*/
     glTranslatef(x,y,25);
     if(facingRight)
         glScalef(1,1,1);
     else
         glScalef(-1,1,1);
-    DesenhaRect(troncoHeight,troncoWidth,0,1,0.3,1); //desenhando base
+    DesenhaRect(troncoHeight,troncoWidth, troncoExtrusion, 0,1,0.3,1); //desenhando base
     DesenhaCabeca(0, troncoHeight + CabecaRadius, CabecaRadius, 0, 1, 0.3);
     DesenhaBraco(0,troncoHeight/2,bTheta);
     DesenhaPerna(0, 0,pETheta1,pETheta2, pDTheta1, pDTheta2);

@@ -276,7 +276,7 @@ void init(int w, int h)
 
 void idle(void)
 {
-    /*
+/*
     static GLdouble previousTime = glutGet(GLUT_ELAPSED_TIME);
     GLdouble currentTime, timeDiference;
     //Pega o tempo que passou do inicio da aplicacao
@@ -301,7 +301,7 @@ void idle(void)
 
     if(isJumping && pressingJumpKey){
         Player.MoveEmY(yVel, isJumping);
-    }*/
+    }
 
     /*if(test){
         Player.MoveEmMenosY(yVel, true);
@@ -827,7 +827,7 @@ void display(void)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    gluLookAt(-157,-140,150, -157,-180,0, 0,1,0);
+    gluLookAt(-197,-180,50, -130,-180,0, 0,1,0);
 
     //GLfloat light_position[] = { 0.0, 3.0, 10.0, 1.0 };
     //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
@@ -836,128 +836,12 @@ void display(void)
     Cenario.Desenha();
     Player.Desenha();
 
-    //glLoadIdentity();
-    /*glPushMatrix();
-    glTranslatef(-20,-180,0);
-    glBegin(GL_QUADS);
-    glColor3f(1,0,0);// Face posterior
-    glVertex3f(10, 10, 5.0);
-    glVertex3f(-10, 10, 5.0);
-    glVertex3f(-10, 0.0, 5.0);
-    glVertex3f(10, 0.0, 5.0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(1,1,0);// Face anterior
-    glVertex3f(10, 10, 0);
-    glVertex3f(10, 0, 0);
-    glVertex3f(-10, 0.0, 0);
-    glVertex3f(-10, 10, 0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(1,1,1);// Face lateral esquerda
-    glVertex3f(-10, 10, 5.0);
-    glVertex3f(-10, 10, 0);
-    glVertex3f(-10, 0.0, 0);
-    glVertex3f(-10, 0, 5.0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(0,1,1);// Face lateral direita
-    glVertex3f(10, 10, 5.0);
-    glVertex3f(10, 0, 5.0);
-    glVertex3f(10, 0, 0);
-    glVertex3f(10, 10, 0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(0,0,1);// Face superior
-    glVertex3f(-10, 10, 0);
-    glVertex3f(-10, 10, 5.0);
-    glVertex3f(10, 10, 5.0);
-    glVertex3f(10, 10, 0);
-    glEnd();
-
-    glBegin(GL_QUADS);
-    glColor3f(0,0,0);// Face inferior
-    glVertex3f(-10, 0, 0);
-    glVertex3f(10, 0, 0);
-    glVertex3f(10, 0, 5.0);
-    glVertex3f(-10, 0, 5.0);
-    glEnd();*/
-    //Player.Desenha();
-
-
-    //DrawAxes(1.5);
-
-    //DrawObj(1.0);
 
     glutSwapBuffers();
 }
 
-void DrawObj(double size) {
-    /*GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1.0};
-    GLfloat materialColor[] = { 1.0, 1.0, 0.0, 1.0};
-    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0};
-    GLfloat mat_shininess[] = { 128 };
-    glMaterialfv(GL_FRONT, GL_EMISSION, materialEmission);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, materialColor);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, materialColor);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);*/
-    glColor3f(1,0,0);
-
-    glPushMatrix();
-    glTranslatef(20,180,0);
-    glutSolidCube(size);
-    glPopMatrix();
-//   glutSolidSphere(size, 20, 10);
-}
-
-void DrawAxes(double size) {
-    GLfloat mat_ambient_r[] = { 1.0, 0.0, 0.0, 1.0 };
-    GLfloat mat_ambient_g[] = { 0.0, 1.0, 0.0, 1.0 };
-    GLfloat mat_ambient_b[] = { 0.0, 0.0, 1.0, 1.0 };
-    GLfloat no_mat[] = { 0.0, 0.0, 0.0, 1.0 };
-    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE,
-                 no_mat);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat);
-    glMaterialfv(GL_FRONT, GL_SHININESS, no_mat);
-
-    //x axis red
-    glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_EMISSION,
-                 mat_ambient_r);
-    glColor3fv(mat_ambient_r);
-    glScalef(size, size*0.1, size*0.1);
-    glTranslatef(0.5, 0, 0); // put in one end
-    glutSolidCube(1.0);
-    glPopMatrix();
-
-    //y axis green
-    glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_EMISSION,
-                 mat_ambient_g);
-    glColor3fv(mat_ambient_g);
-    glRotatef(90,0,0,1);
-    glScalef(size, size*0.1, size*0.1);
-    glTranslatef(0.5, 0, 0); // put in one end
-    glutSolidCube(1.0);
-    glPopMatrix();
-
-    //z axis blue
-    glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_EMISSION, mat_ambient_b);
-    glColor3fv(mat_ambient_b);
-    glRotatef(-90,0,1,0);
-    glScalef(size, size*0.1, size*0.1);
-    glTranslatef(0.5, 0, 0); // put in one end
-    glutSolidCube(1.0);
-    glPopMatrix();
-}
-
 void init(int windowSize) {
+
     if(manuallySetPath){
         string x;
         cout << "Caminho do SVG:"; // Type a number and press enter

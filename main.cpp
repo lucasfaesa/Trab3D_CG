@@ -276,6 +276,7 @@ void init(int w, int h)
 
 void idle(void)
 {
+    /*
     static GLdouble previousTime = glutGet(GLUT_ELAPSED_TIME);
     GLdouble currentTime, timeDiference;
     //Pega o tempo que passou do inicio da aplicacao
@@ -300,7 +301,7 @@ void idle(void)
 
     if(isJumping && pressingJumpKey){
         Player.MoveEmY(yVel, isJumping);
-    }
+    }*/
 
     /*if(test){
         Player.MoveEmMenosY(yVel, true);
@@ -813,7 +814,9 @@ int main(int argc, char *argv[])
     glutInitWindowPosition (100, 100);
     glutCreateWindow (argv[0]);
     init(windowSize);
+
     glutDisplayFunc(display);
+    glutIdleFunc(idle);
     glutMainLoop();
     return 0;
 }
@@ -824,17 +827,71 @@ void display(void)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    gluLookAt(60,-20,150, 20,-180,0, 0,1,0);
+    gluLookAt(-157,-140,150, -157,-180,0, 0,1,0);
 
     //GLfloat light_position[] = { 0.0, 3.0, 10.0, 1.0 };
     //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
 
     Cenario.GetFromSvg();
     Cenario.Desenha();
+    Player.Desenha();
 
-    DrawAxes(1.5);
+    //glLoadIdentity();
+    /*glPushMatrix();
+    glTranslatef(-20,-180,0);
+    glBegin(GL_QUADS);
+    glColor3f(1,0,0);// Face posterior
+    glVertex3f(10, 10, 5.0);
+    glVertex3f(-10, 10, 5.0);
+    glVertex3f(-10, 0.0, 5.0);
+    glVertex3f(10, 0.0, 5.0);
+    glEnd();
 
-    DrawObj(1.0);
+    glBegin(GL_QUADS);
+    glColor3f(1,1,0);// Face anterior
+    glVertex3f(10, 10, 0);
+    glVertex3f(10, 0, 0);
+    glVertex3f(-10, 0.0, 0);
+    glVertex3f(-10, 10, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(1,1,1);// Face lateral esquerda
+    glVertex3f(-10, 10, 5.0);
+    glVertex3f(-10, 10, 0);
+    glVertex3f(-10, 0.0, 0);
+    glVertex3f(-10, 0, 5.0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(0,1,1);// Face lateral direita
+    glVertex3f(10, 10, 5.0);
+    glVertex3f(10, 0, 5.0);
+    glVertex3f(10, 0, 0);
+    glVertex3f(10, 10, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(0,0,1);// Face superior
+    glVertex3f(-10, 10, 0);
+    glVertex3f(-10, 10, 5.0);
+    glVertex3f(10, 10, 5.0);
+    glVertex3f(10, 10, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(0,0,0);// Face inferior
+    glVertex3f(-10, 0, 0);
+    glVertex3f(10, 0, 0);
+    glVertex3f(10, 0, 5.0);
+    glVertex3f(-10, 0, 5.0);
+    glEnd();*/
+    //Player.Desenha();
+
+
+    //DrawAxes(1.5);
+
+    //DrawObj(1.0);
 
     glutSwapBuffers();
 }

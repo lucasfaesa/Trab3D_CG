@@ -48,12 +48,54 @@ bool reversed;
 
 void Player::DesenhaRect(GLfloat height, GLfloat width, GLfloat R, GLfloat G, GLfloat B,GLfloat A)
 {
+    std::cout << "drawing" << std::endl;
+
     glBegin(GL_QUADS);
-    glColor4f(R,G,B,A);// Face posterior
-    glVertex3f(width/2, height, 1.0);
-    glVertex3f(-width/2, height, 1.0);
-    glVertex3f(-width/2, 0.0, 1.0);
-    glVertex3f(width/2, 0.0, 1.0);
+        glColor3f(R,G,B);// Face posterior
+        glVertex3f(width/2, height, 5.0);
+        glVertex3f(-width/2, height, 5.0);
+        glVertex3f(-width/2, 0.0, 5.0);
+        glVertex3f(width/2, 0.0, 5.0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(R,G,B);// Face anterior
+        glVertex3f(width/2, height, 0);
+        glVertex3f(width/2, 0, 0);
+        glVertex3f(-width/2, 0.0, 0);
+        glVertex3f(-width/2, height, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(R,G,B);// Face lateral esquerda
+        glVertex3f(-width/2, height, 5.0);
+        glVertex3f(-width/2, height, 0);
+        glVertex3f(-width/2, 0.0, 0);
+        glVertex3f(-width/2, 0, 5.0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(R,G,B);// Face lateral direita
+        glVertex3f(width/2, height, 5.0);
+        glVertex3f(width/2, 0, 5.0);
+        glVertex3f(width/2, 0, 0);
+        glVertex3f(width/2, height, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(R,G,B);// Face superior
+        glVertex3f(-width/2, height, 0);
+        glVertex3f(-width/2, height, 5.0);
+        glVertex3f(width/2, height, 5.0);
+        glVertex3f(width/2, height, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+        glColor3f(R,G,B);// Face inferior
+        glVertex3f(-width/2, 0, 0);
+        glVertex3f(width/2, 0, 0);
+        glVertex3f(width/2, 0, 5.0);
+        glVertex3f(-width/2, 0, 5.0);
     glEnd();
 
 }
@@ -150,17 +192,65 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
 
 void Player::DesenhaPlayer(GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2)
 {
-    glLoadIdentity();
-    glFlush();
-
+    //glLoadIdentity();
+   //glFlush();
+    /*std::cout << "drawing" << std::endl;
     glPushMatrix();
     glTranslatef(x,y,0);
+    glBegin(GL_QUADS);
+    glColor3f(1,0,1);// Face posterior
+    glVertex3f(10, 10, 5.0);
+    glVertex3f(-10, 10, 5.0);
+    glVertex3f(-10, 0.0, 5.0);
+    glVertex3f(10, 0.0, 5.0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(1,1,0);// Face anterior
+    glVertex3f(10, 10, 0);
+    glVertex3f(10, 0, 0);
+    glVertex3f(-10, 0.0, 0);
+    glVertex3f(-10, 10, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(1,1,1);// Face lateral esquerda
+    glVertex3f(-10, 10, 5.0);
+    glVertex3f(-10, 10, 0);
+    glVertex3f(-10, 0.0, 0);
+    glVertex3f(-10, 0, 5.0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(0,1,1);// Face lateral direita
+    glVertex3f(10, 10, 5.0);
+    glVertex3f(10, 0, 5.0);
+    glVertex3f(10, 0, 0);
+    glVertex3f(10, 10, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(0,0,1);// Face superior
+    glVertex3f(-10, 10, 0);
+    glVertex3f(-10, 10, 5.0);
+    glVertex3f(10, 10, 5.0);
+    glVertex3f(10, 10, 0);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(0,0,0);// Face inferior
+    glVertex3f(-10, 0, 0);
+    glVertex3f(10, 0, 0);
+    glVertex3f(10, 0, 5.0);
+    glVertex3f(-10, 0, 5.0);
+    glEnd();*/
+    glTranslatef(x,y,25);
     if(facingRight)
         glScalef(1,1,1);
     else
         glScalef(-1,1,1);
     DesenhaRect(troncoHeight,troncoWidth,0,1,0.3,1); //desenhando base
-    DesenhaCabeca(0, troncoHeight + CabecaRadius /*offset*/, CabecaRadius, 0, 1, 0.3);
+    DesenhaCabeca(0, troncoHeight + CabecaRadius, CabecaRadius, 0, 1, 0.3);
     DesenhaBraco(0,troncoHeight/2,bTheta);
     DesenhaPerna(0, 0,pETheta1,pETheta2, pDTheta1, pDTheta2);
 

@@ -22,9 +22,8 @@ void Tiro::DesenhaCirc(GLfloat radius, GLfloat R, GLfloat G, GLfloat B)
 
 void Tiro::DesenhaTiro(GLfloat x, GLfloat y)
 {
-
     glPushMatrix();
-    std::cout << "gX= " << x << " " << "gY= " << y << std::endl;
+   // std::cout << "gX= " << x << " " << "gY= " << y << std::endl;
     glTranslatef(x,y,25); //TODO MODIFICAR PARA ESTAR SEMPRE NO Z DO BRAÇO
     DesenhaCirc(0.5,1,1,1);
     glPopMatrix();

@@ -195,6 +195,7 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
 
 void Player::DesenhaPlayer(GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2)
 {
+    glPushMatrix();
     glTranslatef(x,y,25);
     if(facingRight)
         glScalef(1,1,1);

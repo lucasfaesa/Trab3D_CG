@@ -33,7 +33,7 @@ class Enemy {
     GLfloat pDTheta2 = 0;
 
 private:
-    void DesenhaRect(GLfloat height, GLfloat width, GLfloat R, GLfloat G, GLfloat B, GLfloat A);
+    void DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloat R, GLfloat G, GLfloat B, GLfloat A);
     void DesenhaCabeca(GLint index, GLfloat x, GLfloat y, GLfloat radius, GLfloat R,GLfloat G, GLfloat B);
     void DesenhaPerna(GLint index, GLfloat x, GLfloat y, GLfloat theta1, GLfloat theta2, GLfloat theta3, GLfloat theta4);
     void DesenhaBraco(GLint index, GLfloat x, GLfloat y, GLfloat theta1);

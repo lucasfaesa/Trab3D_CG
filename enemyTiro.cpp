@@ -9,12 +9,13 @@ void enemyTiro::DesenhaCirc(GLfloat radius, GLfloat R, GLfloat G, GLfloat B)
 {
     glColor3f(R,G,B);
 
-    glBegin(GL_POLYGON);
+    /*glBegin(GL_POLYGON);
     for(int i=0; i<20; i++){
         double angle = i *(2.0 * M_PI/20);
         glVertex2f(radius*cos(angle), radius*sin(angle));
     }
-    glEnd();
+    glEnd();*/
+    glutSolidSphere(radius,20,10);
 }
 
 void enemyTiro::DesenhaTiro(GLfloat x, GLfloat y)

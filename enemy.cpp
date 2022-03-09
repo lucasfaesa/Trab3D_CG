@@ -8,23 +8,74 @@
 float enemyCabecaRadius = 1;
 float enemyTroncoHeight  = 3.8;
 float enemyTroncoWidth  = 2;
+float enemyTroncoExtrusion = 1.5;
 float enemyBracoHeight  = 3;
 float enemyBracoWidth  = 0.5;
+float enemyBracoExtrusion = 0.5;
 float enemyPernaHeight  = 1.8;
 float enemyPernaWidth  = 0.5;
-float testzz;
+float enemyPernaExtrusion = 0.5;
+
 int contEnemies = 0;
 bool enemyRotatePernaE1Backwards[7] = {};
 bool enemyRotatePernaD1Backwards[7] = {};
 
-void Enemy::DesenhaRect(GLfloat height, GLfloat width, GLfloat R, GLfloat G, GLfloat B,GLfloat A)
+void Enemy::DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloat R, GLfloat G, GLfloat B,GLfloat A)
 {
-    glBegin(GL_QUADS);
+    /*glBegin(GL_QUADS);
     glColor4f(R,G,B,A);// Face posterior
     glVertex3f(width/2, height, 1.0);
     glVertex3f(-width/2, height, 1.0);
     glVertex3f(-width/2, 0.0, 1.0);
     glVertex3f(width/2, 0.0, 1.0);
+    glEnd();*/
+
+    glBegin(GL_QUADS);
+    glColor3f(R,G,B);// Face posterior
+    glVertex3f(width/2, height, extrusion/2);
+    glVertex3f(-width/2, height, extrusion/2);
+    glVertex3f(-width/2, 0.0, extrusion/2);
+    glVertex3f(width/2, 0.0, extrusion/2);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(R,G,B);// Face anterior
+    glVertex3f(width/2, height, -extrusion/2);
+    glVertex3f(width/2, 0, -extrusion/2);
+    glVertex3f(-width/2, 0.0, -extrusion/2);
+    glVertex3f(-width/2, height, -extrusion/2);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(R,G,B);// Face lateral esquerda
+    glVertex3f(-width/2, height, extrusion/2);
+    glVertex3f(-width/2, height, -extrusion/2);
+    glVertex3f(-width/2, 0.0, -extrusion/2);
+    glVertex3f(-width/2, 0, extrusion/2);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(R,G,B);// Face lateral direita
+    glVertex3f(width/2, height, extrusion/2);
+    glVertex3f(width/2, 0, extrusion/2);
+    glVertex3f(width/2, 0, -extrusion/2);
+    glVertex3f(width/2, height, -extrusion/2);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(R,G,B);// Face superior
+    glVertex3f(-width/2, height, -extrusion/2);
+    glVertex3f(-width/2, height, extrusion/2);
+    glVertex3f(width/2, height, extrusion/2);
+    glVertex3f(width/2, height, -extrusion/2);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(R,G,B);// Face inferior
+    glVertex3f(-width/2, 0, -extrusion/2);
+    glVertex3f(width/2, 0, -extrusion/2);
+    glVertex3f(width/2, 0, extrusion/2);
+    glVertex3f(-width/2, 0, extrusion/2);
     glEnd();
 
 }
@@ -58,7 +109,7 @@ void Enemy::DesenhaBraco(GLint index, GLfloat x, GLfloat y, GLfloat theta1)
     else
         glScalef(-1,1,1);*/
 
-    DesenhaRect(enemyBracoHeight,enemyBracoWidth,1,1,0,1);
+    DesenhaRect(enemyBracoHeight,enemyBracoWidth,enemyBracoExtrusion,1,1,0,1);
     glPopMatrix();
 }
 
@@ -73,10 +124,10 @@ void Enemy::DesenhaPerna(GLint index, GLfloat x, GLfloat y, GLfloat pEtheta1, GL
         else
             glScalef(-1,1,1);
         glRotatef(pEtheta1,0,0,1);
-        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,0,1,0,1); //desenhando primeira perna esquerda
+        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,enemyPernaExtrusion,0,1,0,1); //desenhando primeira perna esquerda
         glTranslatef(0,-enemyPernaHeight,0);
         glRotatef(pEtheta2,0,0,1);
-        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,1,1,0,1); //desenhando segunda perna esquerda
+        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,enemyPernaExtrusion,1,1,0,1); //desenhando segunda perna esquerda
         glPopMatrix();
 
         glPushMatrix();
@@ -86,10 +137,10 @@ void Enemy::DesenhaPerna(GLint index, GLfloat x, GLfloat y, GLfloat pEtheta1, GL
         else
             glScalef(-1,1,1);
         glRotatef(pDtheta1,0,0,1);
-        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,1,0,0,1); //desenhando primeira perna direita
+        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,enemyPernaExtrusion,1,0,0,1); //desenhando primeira perna direita
         glTranslatef(0,-enemyPernaHeight,0);
         glRotatef(pDtheta2,0,0,1);
-        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,1,1,1,1); //desenhando segunda perna direita*/
+        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,enemyPernaExtrusion,1,1,1,1); //desenhando segunda perna direita*/
         glPopMatrix();
     }else{
         glPushMatrix();
@@ -99,10 +150,10 @@ void Enemy::DesenhaPerna(GLint index, GLfloat x, GLfloat y, GLfloat pEtheta1, GL
         else
             glScalef(-1,1,1);
         glRotatef(pDtheta1,0,0,1);
-        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,1,0,0,1); //desenhando primeira perna direita
+        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,enemyPernaExtrusion,1,0,0,1); //desenhando primeira perna direita
         glTranslatef(0,-enemyPernaHeight,0);
         glRotatef(pDtheta2,0,0,1);
-        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,1,1,1,1); //desenhando segunda perna direita*/
+        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,enemyPernaExtrusion,1,1,1,1); //desenhando segunda perna direita*/
         glPopMatrix();
 
         if(enemyFacingRight[index])
@@ -110,10 +161,10 @@ void Enemy::DesenhaPerna(GLint index, GLfloat x, GLfloat y, GLfloat pEtheta1, GL
         else
             glScalef(-1,1,1);
         glRotatef(pEtheta1,0,0,1);
-        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,0,1,0,1); //desenhando primeira perna esquerda
+        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,enemyPernaExtrusion,0,1,0,1); //desenhando primeira perna esquerda
         glTranslatef(0,-enemyPernaHeight,0);
         glRotatef(pEtheta2,0,0,1);
-        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,1,1,0,1); //desenhando segunda perna esquerda
+        DesenhaRect(-enemyPernaHeight,enemyPernaWidth,enemyPernaExtrusion,1,1,0,1); //desenhando segunda perna esquerda
         glPopMatrix();
     }
 
@@ -121,8 +172,8 @@ void Enemy::DesenhaPerna(GLint index, GLfloat x, GLfloat y, GLfloat pEtheta1, GL
 
 void Enemy::DesenhaEnemy(GLint index ,GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2)
 {
-    glLoadIdentity();
-    glFlush();
+    //glLoadIdentity();
+    //glFlush();
 
     glPushMatrix();
     glTranslatef(x,y,0);
@@ -130,7 +181,8 @@ void Enemy::DesenhaEnemy(GLint index ,GLfloat x, GLfloat y, GLfloat bTheta, GLfl
         glScalef(1,1,1);
     else
         glScalef(-1,1,1);*/
-    DesenhaRect(enemyTroncoHeight,enemyTroncoWidth,1,0,0,1); //desenhando base
+
+    DesenhaRect(enemyTroncoHeight,enemyTroncoWidth, enemyTroncoExtrusion,1,0,0,1); //desenhando base
     DesenhaCabeca(index, 0, enemyTroncoHeight + enemyCabecaRadius /*offset*/, enemyCabecaRadius, 1, 0, 0);
     DesenhaBraco(index, 0,enemyTroncoHeight/2, bTheta);
     DesenhaPerna(index, 0, 0,pETheta1,pETheta2, pDTheta1, pDTheta2);

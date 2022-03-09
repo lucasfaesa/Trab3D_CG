@@ -288,16 +288,16 @@ void idle(void)
     //Atualiza o tempo do ultimo frame ocorrido
     previousTime = currentTime;
 
-    //RandomEnemyShoot(timeDiference);
+    RandomEnemyShoot(timeDiference);
 
     CheckKeyPress(timeDiference);
     CheckPlayerCollision();
     CheckPlayerTiro(timeDiference);
-    //CheckEnemyTiro(timeDiference);
+    CheckEnemyTiro(timeDiference);
 
-    //CheckEnemiesCollision();
-    //MoveEnemies(timeDiference);
-    //CheckPlayerGameWon();
+    CheckEnemiesCollision();
+    MoveEnemies(timeDiference);
+    CheckPlayerGameWon();
     //MoveCamera();
 
     if(isJumping && pressingJumpKey){
@@ -841,28 +841,31 @@ void display(void)
     //GLfloat light_position[] = { 0.0, 3.0, 10.0, 1.0 };
     //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
     //gluLookAt(-250,-180,60, -130,-180,0, 0,1,0);
-    gluLookAt(-130,-180,80, -130,-180,0, 0,1,0);
+    gluLookAt(-1,-180,500, -1,-180,0, 0,1,0);
+
 
     Cenario.Desenha();
-    if (tiro) tiro->Desenha();
+
     if(drawPlayer)
         Player.Desenha();
 
-    /*for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+    if (tiro) tiro->Desenha();
+    for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
         if(enemiesArray[i].canBeDrawn)
             Enemy.Desenha(i, enemiesArray[i]);
-    }*/
+    }
+    glPushMatrix();
+    glTranslatef(-157,-180,0);
+    glPopMatrix();
+    ExibirTexto();
 
-    //ExibirTexto();
 
-
-
-    /*if(canEnemiesShoot){
+    if(canEnemiesShoot){
         for(int i=0; i<sizeof(enemyTiroArray)/sizeof(enemyTiroArray[0]); i++){
             if (enemyTiroArray[i])
                 enemyTiroArray[i]->Desenha();
         }
-    }*/
+    }
 
 
 

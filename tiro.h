@@ -2,6 +2,8 @@
 #define	TIRO_H
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <iostream>
+#include <GL/freeglut_std.h>
 
 #define radiusTiro 1
 

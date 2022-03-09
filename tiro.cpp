@@ -10,21 +10,22 @@ void Tiro::DesenhaCirc(GLfloat radius, GLfloat R, GLfloat G, GLfloat B)
 {
     glColor3f(R,G,B);
 
-    glutSolidSphere(radius,20,10);
-    /*
-    glBegin(GL_POLYGON);
+    /*glBegin(GL_POLYGON);
     for(int i=0; i<20; i++){
         double angle = i *(2.0 * M_PI/20);
         glVertex2f(radius*cos(angle), radius*sin(angle));
-    }*/
-    glEnd();
+    }
+    glEnd();*/
+    //glColor3f(0,0,0);
+    glutSolidSphere(radius,20,10);
 }
 
 void Tiro::DesenhaTiro(GLfloat x, GLfloat y)
 {
-    glPushMatrix();
 
-    glTranslatef(x,y,0);
+    glPushMatrix();
+    std::cout << "gX= " << x << " " << "gY= " << y << std::endl;
+    glTranslatef(x,y,25); //TODO MODIFICAR PARA ESTAR SEMPRE NO Z DO BRAÇO
     DesenhaCirc(0.5,1,1,1);
     glPopMatrix();
 }
@@ -37,6 +38,8 @@ void Tiro::Move(double timeDifference)
     }else{
         gY -= gVel * timeDifference * sin(gDirectionAng*M_PI/180);
     }
+
+
 }
 
 bool Tiro::Valido()

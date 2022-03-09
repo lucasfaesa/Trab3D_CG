@@ -196,7 +196,7 @@ void Cenario::GetCenarioFromSvg() {
     }
 
     //#temp
-   // Cenario::AddBoxesToArray(cont, -163.5, -187.2, -10,364.1373,"black");
+    Cenario::AddBoxesToArray(cont, -163.5, -187.2, -10,364.1373,"black");
     //#temp
     cont = 0;
 }

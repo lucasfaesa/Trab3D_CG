@@ -215,11 +215,13 @@ Tiro* Player::Atira() {
     if(facingRight) {
         float bulletX = gX - bracoHeight * sin(angleSumTheta1);
         float bulletY = gY + troncoHeight / 2 + bracoHeight * cos(angleSumTheta1);
+        std::cout << "here right" << std::endl;
         return new Tiro(bulletX, bulletY, 90 + bTheta, facingRight);
     }
     else{
         float bulletX = gX + bracoHeight * sin(angleSumTheta1) ;
         float bulletY = gY + troncoHeight/2 + bracoHeight * cos(angleSumTheta1);
+        std::cout << "here left" << std::endl;
         return new Tiro(bulletX, bulletY, -90 + bTheta, facingRight);
     }
 

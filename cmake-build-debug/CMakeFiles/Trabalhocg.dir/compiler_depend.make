@@ -176,24 +176,6 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: ../enemy.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/std_abs.h \
   ../enemyTiro.h \
   ../tiro.h \
-  C:/MinGW/include/time.h \
-  C:/MinGW/include/sys/types.h \
-  ../tinyxml2.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cctype \
-  C:/MinGW/include/ctype.h \
-  C:/MinGW/include/wctype.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/climits \
-  C:/MinGW/include/limits.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cstdio \
-  C:/MinGW/include/stdio.h \
-  C:/MinGW/include/sys/types.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/stdarg.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/stdint.h \
-  C:/MinGW/include/stdint.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cmath \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/cpp_type_traits.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/type_traits.h \
-  C:/MinGW/include/math.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/iostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ios \
@@ -204,7 +186,10 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: ../enemy.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cwchar \
   C:/MinGW/include/wchar.h \
   C:/MinGW/include/wctype.h \
+  C:/MinGW/include/sys/types.h \
   C:/MinGW/include/stdio.h \
+  C:/MinGW/include/sys/types.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/stdarg.h \
   C:/MinGW/include/stdlib.h \
   C:/MinGW/include/direct.h \
   C:/MinGW/include/sys/stat.h \
@@ -229,6 +214,8 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: ../enemy.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/char_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_algobase.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/functexcept.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/cpp_type_traits.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/type_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/numeric_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_pair.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_iterator_base_types.h \
@@ -239,10 +226,15 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: ../enemy.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/debug/debug.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/predefined_ops.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cstdint \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/stdint.h \
+  C:/MinGW/include/stdint.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/localefwd.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/mingw32/bits/c++locale.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/clocale \
   C:/MinGW/include/locale.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cctype \
+  C:/MinGW/include/ctype.h \
+  C:/MinGW/include/wctype.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/ios_base.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/atomicity.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/mingw32/bits/gthr.h \
@@ -264,6 +256,8 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: ../enemy.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/alloc_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/alloc_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/string_conversions.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cstdio \
+  C:/MinGW/include/stdio.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cerrno \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/functional_hash.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/basic_string.tcc \
@@ -283,7 +277,33 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: ../enemy.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/basic_ios.tcc \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/ostream.tcc \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/istream \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc \
+  C:/MinGW/freeglut/include/GL/freeglut_std.h \
+  C:/MinGW/include/windows.h \
+  C:/MinGW/include/windef.h \
+  C:/MinGW/include/winnt.h \
+  C:/MinGW/include/winerror.h \
+  C:/MinGW/include/basetsd.h \
+  C:/MinGW/include/pshpack4.h \
+  C:/MinGW/include/poppack.h \
+  C:/MinGW/include/wincon.h \
+  C:/MinGW/include/winbase.h \
+  C:/MinGW/include/wingdi.h \
+  C:/MinGW/include/winuser.h \
+  C:/MinGW/include/dbt.h \
+  C:/MinGW/include/winnls.h \
+  C:/MinGW/include/winver.h \
+  C:/MinGW/include/winnetwk.h \
+  C:/MinGW/include/winreg.h \
+  C:/MinGW/include/reason.h \
+  C:/MinGW/include/winsvc.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/stdlib.h \
+  C:/MinGW/include/time.h \
+  ../tinyxml2.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/climits \
+  C:/MinGW/include/limits.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cmath \
+  C:/MinGW/include/math.h
 
 CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj: ../enemyTiro.cpp \
   ../enemyTiro.h \
@@ -309,13 +329,6 @@ CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj: ../enemyTiro.cpp \
   C:/MinGW/include/alloca.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/std_abs.h \
   ../tiro.h \
-  C:/MinGW/include/time.h \
-  C:/MinGW/include/sys/types.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/math.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cmath \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/cpp_type_traits.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/type_traits.h \
-  C:/MinGW/include/math.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/iostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ios \
@@ -326,6 +339,7 @@ CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj: ../enemyTiro.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cwchar \
   C:/MinGW/include/wchar.h \
   C:/MinGW/include/wctype.h \
+  C:/MinGW/include/sys/types.h \
   C:/MinGW/include/stdio.h \
   C:/MinGW/include/sys/types.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/stdarg.h \
@@ -353,6 +367,8 @@ CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj: ../enemyTiro.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/char_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_algobase.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/functexcept.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/cpp_type_traits.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/type_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/numeric_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_pair.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_iterator_base_types.h \
@@ -414,7 +430,31 @@ CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj: ../enemyTiro.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/basic_ios.tcc \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/ostream.tcc \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/istream \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc \
+  C:/MinGW/freeglut/include/GL/freeglut_std.h \
+  C:/MinGW/include/windows.h \
+  C:/MinGW/include/windef.h \
+  C:/MinGW/include/winnt.h \
+  C:/MinGW/include/winerror.h \
+  C:/MinGW/include/basetsd.h \
+  C:/MinGW/include/pshpack4.h \
+  C:/MinGW/include/poppack.h \
+  C:/MinGW/include/wincon.h \
+  C:/MinGW/include/winbase.h \
+  C:/MinGW/include/wingdi.h \
+  C:/MinGW/include/winuser.h \
+  C:/MinGW/include/dbt.h \
+  C:/MinGW/include/winnls.h \
+  C:/MinGW/include/winver.h \
+  C:/MinGW/include/winnetwk.h \
+  C:/MinGW/include/winreg.h \
+  C:/MinGW/include/reason.h \
+  C:/MinGW/include/winsvc.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/stdlib.h \
+  C:/MinGW/include/time.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/math.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cmath \
+  C:/MinGW/include/math.h
 
 CMakeFiles/Trabalhocg.dir/main.cpp.obj: ../main.cpp \
   C:/MinGW/include/GL/gl.h \
@@ -561,6 +601,7 @@ CMakeFiles/Trabalhocg.dir/main.cpp.obj: ../main.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc \
   ../player.h \
   ../tiro.h \
+  C:/MinGW/freeglut/include/GL/freeglut_std.h \
   ../enemyTiro.h \
   ../tinyxml2.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/climits \
@@ -588,24 +629,10 @@ CMakeFiles/Trabalhocg.dir/player.cpp.obj: ../player.cpp \
   C:/MinGW/include/GL/glu.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/stddef.h \
   ../tiro.h \
-  ../enemyTiro.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cmath \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/iostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/mingw32/bits/c++config.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/mingw32/bits/os_defines.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/mingw32/bits/cpu_defines.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/cpp_type_traits.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/type_traits.h \
-  C:/MinGW/include/math.h \
-  C:/MinGW/include/_mingw.h \
-  C:/MinGW/include/msvcrtver.h \
-  C:/MinGW/include/w32api.h \
-  C:/MinGW/include/sdkddkver.h \
-  C:/MinGW/include/features.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/std_abs.h \
-  C:/MinGW/include/stdlib.h \
-  C:/MinGW/include/errno.h \
-  C:/MinGW/include/alloca.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/iostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ios \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/iosfwd \
@@ -614,6 +641,11 @@ CMakeFiles/Trabalhocg.dir/player.cpp.obj: ../player.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/postypes.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cwchar \
   C:/MinGW/include/wchar.h \
+  C:/MinGW/include/_mingw.h \
+  C:/MinGW/include/msvcrtver.h \
+  C:/MinGW/include/w32api.h \
+  C:/MinGW/include/sdkddkver.h \
+  C:/MinGW/include/features.h \
   C:/MinGW/include/wctype.h \
   C:/MinGW/include/sys/types.h \
   C:/MinGW/include/stdio.h \
@@ -643,6 +675,8 @@ CMakeFiles/Trabalhocg.dir/player.cpp.obj: ../player.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/char_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_algobase.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/functexcept.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/cpp_type_traits.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/type_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/numeric_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_pair.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_iterator_base_types.h \
@@ -684,6 +718,10 @@ CMakeFiles/Trabalhocg.dir/player.cpp.obj: ../player.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/alloc_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/string_conversions.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cstdlib \
+  C:/MinGW/include/stdlib.h \
+  C:/MinGW/include/errno.h \
+  C:/MinGW/include/alloca.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/std_abs.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cstdio \
   C:/MinGW/include/stdio.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cerrno \
@@ -706,7 +744,6 @@ CMakeFiles/Trabalhocg.dir/player.cpp.obj: ../player.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/ostream.tcc \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/istream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc \
-  C:/MinGW/freeglut/include/GL/glut.h \
   C:/MinGW/freeglut/include/GL/freeglut_std.h \
   C:/MinGW/include/windows.h \
   C:/MinGW/include/windef.h \
@@ -729,7 +766,12 @@ CMakeFiles/Trabalhocg.dir/player.cpp.obj: ../player.cpp \
   C:/MinGW/include/winreg.h \
   C:/MinGW/include/reason.h \
   C:/MinGW/include/winsvc.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/stdlib.h
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/stdlib.h \
+  ../enemyTiro.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cmath \
+  C:/MinGW/include/math.h \
+  C:/MinGW/freeglut/include/GL/glut.h \
+  C:/MinGW/freeglut/include/GL/freeglut_std.h
 
 CMakeFiles/Trabalhocg.dir/tinyxml2.cpp.obj: ../tinyxml2.cpp \
   ../tinyxml2.h \
@@ -782,26 +824,10 @@ CMakeFiles/Trabalhocg.dir/tiro.cpp.obj: ../tiro.cpp \
   C:/MinGW/include/GL/gl.h \
   C:/MinGW/include/GL/glu.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/stddef.h \
-  ../player.h \
-  ../enemyTiro.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/math.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cmath \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/iostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/mingw32/bits/c++config.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/mingw32/bits/os_defines.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/mingw32/bits/cpu_defines.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/cpp_type_traits.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/type_traits.h \
-  C:/MinGW/include/math.h \
-  C:/MinGW/include/_mingw.h \
-  C:/MinGW/include/msvcrtver.h \
-  C:/MinGW/include/w32api.h \
-  C:/MinGW/include/sdkddkver.h \
-  C:/MinGW/include/features.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/std_abs.h \
-  C:/MinGW/include/stdlib.h \
-  C:/MinGW/include/errno.h \
-  C:/MinGW/include/alloca.h \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/iostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ostream \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ios \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/iosfwd \
@@ -810,6 +836,11 @@ CMakeFiles/Trabalhocg.dir/tiro.cpp.obj: ../tiro.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/postypes.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cwchar \
   C:/MinGW/include/wchar.h \
+  C:/MinGW/include/_mingw.h \
+  C:/MinGW/include/msvcrtver.h \
+  C:/MinGW/include/w32api.h \
+  C:/MinGW/include/sdkddkver.h \
+  C:/MinGW/include/features.h \
   C:/MinGW/include/wctype.h \
   C:/MinGW/include/sys/types.h \
   C:/MinGW/include/stdio.h \
@@ -839,6 +870,8 @@ CMakeFiles/Trabalhocg.dir/tiro.cpp.obj: ../tiro.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/char_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_algobase.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/functexcept.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/cpp_type_traits.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/type_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/numeric_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_pair.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/stl_iterator_base_types.h \
@@ -880,6 +913,10 @@ CMakeFiles/Trabalhocg.dir/tiro.cpp.obj: ../tiro.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/alloc_traits.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/ext/string_conversions.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cstdlib \
+  C:/MinGW/include/stdlib.h \
+  C:/MinGW/include/errno.h \
+  C:/MinGW/include/alloca.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/std_abs.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cstdio \
   C:/MinGW/include/stdio.h \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cerrno \
@@ -901,7 +938,37 @@ CMakeFiles/Trabalhocg.dir/tiro.cpp.obj: ../tiro.cpp \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/basic_ios.tcc \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/ostream.tcc \
   C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/istream \
-  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/bits/istream.tcc \
+  C:/MinGW/freeglut/include/GL/freeglut_std.h \
+  C:/MinGW/include/windows.h \
+  C:/MinGW/include/windef.h \
+  C:/MinGW/include/winnt.h \
+  C:/MinGW/include/winerror.h \
+  C:/MinGW/include/string.h \
+  C:/MinGW/include/strings.h \
+  C:/MinGW/include/wchar.h \
+  C:/MinGW/include/basetsd.h \
+  C:/MinGW/include/pshpack4.h \
+  C:/MinGW/include/poppack.h \
+  C:/MinGW/include/wincon.h \
+  C:/MinGW/include/winbase.h \
+  C:/MinGW/include/wingdi.h \
+  C:/MinGW/include/winuser.h \
+  C:/MinGW/include/dbt.h \
+  C:/MinGW/include/winnls.h \
+  C:/MinGW/include/winver.h \
+  C:/MinGW/include/winnetwk.h \
+  C:/MinGW/include/winreg.h \
+  C:/MinGW/include/reason.h \
+  C:/MinGW/include/winsvc.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/stdlib.h \
+  ../player.h \
+  ../enemyTiro.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/math.h \
+  C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/cmath \
+  C:/MinGW/include/math.h \
+  C:/MinGW/freeglut/include/GL/glut.h \
+  C:/MinGW/freeglut/include/GL/freeglut_std.h
 
 
 C:/MinGW/lib/gcc/mingw32/9.2.0/include/c++/string:

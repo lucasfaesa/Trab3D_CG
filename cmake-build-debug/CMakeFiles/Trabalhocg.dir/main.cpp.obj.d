@@ -121,6 +121,7 @@ CMakeFiles/Trabalhocg.dir/main.cpp.obj: \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\istream.tcc \
  C:\Users\lucas\Desktop\Computacao_Grafica\Trab3D\player.h \
  C:\Users\lucas\Desktop\Computacao_Grafica\Trab3D\tiro.h \
+ C:/MinGW/freeglut/include/GL/freeglut_std.h \
  C:\Users\lucas\Desktop\Computacao_Grafica\Trab3D\enemyTiro.h \
  C:\Users\lucas\Desktop\Computacao_Grafica\Trab3D\tinyxml2.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\climits \

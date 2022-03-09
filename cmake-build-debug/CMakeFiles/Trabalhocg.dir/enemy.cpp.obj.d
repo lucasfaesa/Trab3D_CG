@@ -17,21 +17,6 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\std_abs.h \
  C:\Users\lucas\Desktop\Computacao_Grafica\Trab3D\enemyTiro.h \
  C:\Users\lucas\Desktop\Computacao_Grafica\Trab3D\tiro.h \
- c:\mingw\include\time.h c:\mingw\include\sys\types.h \
- C:\Users\lucas\Desktop\Computacao_Grafica\Trab3D\tinyxml2.h \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cctype \
- c:\mingw\include\ctype.h c:\mingw\include\wctype.h \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\climits \
- c:\mingw\include\limits.h \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cstdio \
- c:\mingw\include\stdio.h c:\mingw\include\sys/types.h \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\stdarg.h \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\stdint.h \
- c:\mingw\include\stdint.h \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cmath \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\cpp_type_traits.h \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ext\type_traits.h \
- c:\mingw\include\math.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\iostream \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ostream \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ios \
@@ -41,11 +26,13 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\postypes.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cwchar \
  c:\mingw\include\wchar.h c:\mingw\include\wctype.h \
- c:\mingw\include\stdio.h c:\mingw\include\stdlib.h \
- c:\mingw\include\direct.h c:\mingw\include\sys/stat.h \
- c:\mingw\include\conio.h c:\mingw\include\io.h c:\mingw\include\stdint.h \
- c:\mingw\include\time.h c:\mingw\include\locale.h \
- c:\mingw\include\process.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\stdarg.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\direct.h \
+ c:\mingw\include\sys/stat.h c:\mingw\include\conio.h \
+ c:\mingw\include\io.h c:\mingw\include\stdint.h c:\mingw\include\time.h \
+ c:\mingw\include\locale.h c:\mingw\include\process.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\exception \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\exception.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\exception_ptr.h \
@@ -61,6 +48,8 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\char_traits.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\stl_algobase.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\functexcept.h \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\cpp_type_traits.h \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ext\type_traits.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ext\numeric_traits.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\stl_pair.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\stl_iterator_base_types.h \
@@ -71,10 +60,14 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\debug\debug.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\predefined_ops.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cstdint \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\stdint.h \
+ c:\mingw\include\stdint.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\localefwd.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\mingw32\bits\c++locale.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\clocale \
  c:\mingw\include\locale.h \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cctype \
+ c:\mingw\include\ctype.h c:\mingw\include\wctype.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\ios_base.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ext\atomicity.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\mingw32\bits\gthr.h \
@@ -96,6 +89,8 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ext\alloc_traits.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\alloc_traits.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ext\string_conversions.h \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cstdio \
+ c:\mingw\include\stdio.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cerrno \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\functional_hash.h \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\basic_string.tcc \
@@ -115,4 +110,20 @@ CMakeFiles/Trabalhocg.dir/enemy.cpp.obj: \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\basic_ios.tcc \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\ostream.tcc \
  c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\istream \
- c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\istream.tcc
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\istream.tcc \
+ C:/MinGW/freeglut/include/GL/freeglut_std.h c:\mingw\include\windows.h \
+ c:\mingw\include\windef.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\dbt.h c:\mingw\include\winnls.h \
+ c:\mingw\include\winver.h c:\mingw\include\winnetwk.h \
+ c:\mingw\include\winreg.h c:\mingw\include\reason.h \
+ c:\mingw\include\winsvc.h \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\stdlib.h \
+ c:\mingw\include\time.h \
+ C:\Users\lucas\Desktop\Computacao_Grafica\Trab3D\tinyxml2.h \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\climits \
+ c:\mingw\include\limits.h \
+ c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\cmath c:\mingw\include\math.h

@@ -267,16 +267,18 @@ void init(int w, int h)
 
     glLoadIdentity();
 
-    glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
-    gluPerspective (50,(GLfloat)Width/(GLfloat)Width,0.1, 100);
-    //glOrtho(-45.9,45.9,-45.9,45.9, 0.1,100);
+    //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
+    gluPerspective (50,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
+    //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
+    //gluOrtho2D(-45.9,45.9,-45.9,45.9);
+    //glOrtho(-45.9,45.9,-45.9,45.9, 0.1,1000);
     glMatrixMode(GL_MODELVIEW); // Select the projection matrix
     glLoadIdentity();
 }
 
 void idle(void)
 {
-/*
+
     static GLdouble previousTime = glutGet(GLUT_ELAPSED_TIME);
     GLdouble currentTime, timeDiference;
     //Pega o tempo que passou do inicio da aplicacao
@@ -286,17 +288,16 @@ void idle(void)
     //Atualiza o tempo do ultimo frame ocorrido
     previousTime = currentTime;
 
-    RandomEnemyShoot(timeDiference);
+    //RandomEnemyShoot(timeDiference);
 
     CheckKeyPress(timeDiference);
     CheckPlayerCollision();
     CheckPlayerTiro(timeDiference);
-    CheckEnemyTiro(timeDiference);
-    //Enemy.MoveEmX(0,enemiesArray[0].speed, timeDiference);
-    //Enemy.MoveEmX(1,enemiesArray[1].speed, timeDiference);
-    CheckEnemiesCollision();
-    MoveEnemies(timeDiference);
-    CheckPlayerGameWon();
+    //CheckEnemyTiro(timeDiference);
+
+    //CheckEnemiesCollision();
+    //MoveEnemies(timeDiference);
+    //CheckPlayerGameWon();
     //MoveCamera();
 
     if(isJumping && pressingJumpKey){
@@ -697,6 +698,7 @@ void CheckKeyPress(GLdouble diference) {
             }
         }
     }
+
     if(keyStatus[(int)('d')])
     {
         if(!canPlayerMove) return;
@@ -735,9 +737,13 @@ void MyMouse(int button, int state, int x, int y)
 
             if(state == GLUT_UP)
             {
+
                 if(!canPlayerShoot) return;
-                if (!tiro)
+                if (!tiro){
+                    cout<<"Pressed shoot" <<endl;
                     tiro = Player.Atira();
+                }
+
             }
             break;
 
@@ -816,25 +822,48 @@ int main(int argc, char *argv[])
     init(windowSize);
 
     glutDisplayFunc(display);
+    glutKeyboardFunc(keyPress);
+    glutPassiveMotionFunc(passive);
     glutIdleFunc(idle);
+    glutMouseFunc(MyMouse);
+    glutKeyboardUpFunc(keyup);
+    glutReshapeFunc(init);
     glutMainLoop();
     return 0;
 }
 void display(void)
 {
-    glClear (   GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
+    glClear (GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
 
-    glMatrixMode(GL_MODELVIEW);
+    //glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-
-    gluLookAt(-197,-180,50, -130,-180,0, 0,1,0);
 
     //GLfloat light_position[] = { 0.0, 3.0, 10.0, 1.0 };
     //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
+    //gluLookAt(-250,-180,60, -130,-180,0, 0,1,0);
+    gluLookAt(-130,-180,80, -130,-180,0, 0,1,0);
 
-    Cenario.GetFromSvg();
     Cenario.Desenha();
-    Player.Desenha();
+    if (tiro) tiro->Desenha();
+    if(drawPlayer)
+        Player.Desenha();
+
+    /*for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+        if(enemiesArray[i].canBeDrawn)
+            Enemy.Desenha(i, enemiesArray[i]);
+    }*/
+
+    //ExibirTexto();
+
+
+
+    /*if(canEnemiesShoot){
+        for(int i=0; i<sizeof(enemyTiroArray)/sizeof(enemyTiroArray[0]); i++){
+            if (enemyTiroArray[i])
+                enemyTiroArray[i]->Desenha();
+        }
+    }*/
+
 
 
     glutSwapBuffers();
@@ -853,6 +882,42 @@ void init(int windowSize) {
         Enemy.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
     }
 
+    srand (time(NULL));
+
+    Enemy.GetFromSvg();
+    Cenario.GetFromSvg();
+
+    Cenario.GetBoxesArray(boxesArray);
+    Enemy.GetEnemiesArray(enemiesArray);
+
+    //## PLAYER
+    float playerPosX;
+    float playerPosY;
+    Player.GetPos(playerPosX,playerPosY);
+    previousPlayerBottom = playerPosY  - 3.8;
+    previousPlayerRight = playerPosX + 2 / 2;
+    previousPlayerLeft = playerPosX - 2 / 2;
+    previousPlayerTop = playerPosY + 5.6;
+
+    //## ENEMY
+    float enemyPosX[7] = {};
+    float enemyPosY[7] = {};
+    for(int i=0;i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++) {
+        Enemy.GetPos(i, enemyPosX[i], enemyPosY[i]);
+
+        previousEnemyBottom[i] = enemyPosY[i] - 3.6; //perna height x 2
+        previousEnemyRight[i] = enemyPosX[i] + 2 / 2; //metade da largura do tronco
+        previousEnemyLeft[i] = enemyPosX[i] - 2 / 2; //metade da largura do tronco
+        previousEnemyTop[i] = enemyPosY[i] + 5.6; //cabeca x 2 + altura do tronco
+    }
+
+    ResetKeyStatus();
+
+    // The color the windows will redraw. Its done to erase the previous frame.
+    int R  = 1;
+    int G = 0.2;
+    int B = 1;
+
     glClearColor (1.0, 0.3, 0.0, 0.0);
     //glShadeModel (GL_FLAT);
     glShadeModel (GL_SMOOTH);
@@ -867,8 +932,9 @@ void init(int windowSize) {
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity();
 
-
-    gluPerspective (50,(GLfloat)windowSize/(GLfloat)windowSize,0.1, 1000);
+    //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
+    //gluOrtho2D(-45.9,45.9,-45.9,45.9);
+    //gluPerspective (50,(GLfloat)windowSize/(GLfloat)windowSize,0.1, 1000);
     //glOrtho (-3, 3, -3*(GLfloat)windowSize/(GLfloat)windowSize, 3*(GLfloat)windowSize/(GLfloat)windowSize, 1.0, 15.0);
 }
 

@@ -176,7 +176,7 @@ void Enemy::DesenhaEnemy(GLint index ,GLfloat x, GLfloat y, GLfloat bTheta, GLfl
     //glFlush();
 
     glPushMatrix();
-    glTranslatef(x,y,0);
+    glTranslatef(x,y,25);
     /*if(enemyFacingRight[index])
         glScalef(1,1,1);
     else

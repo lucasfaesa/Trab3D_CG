@@ -22,7 +22,7 @@ void enemyTiro::DesenhaTiro(GLfloat x, GLfloat y)
 {
     glPushMatrix();
 
-    glTranslatef(x,y,0);
+    glTranslatef(x,y,25);
     DesenhaCirc(0.5,1,1,1);
     glPopMatrix();
 }

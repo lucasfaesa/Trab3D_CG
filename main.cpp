@@ -80,6 +80,21 @@ bool canPlayerShoot = true;
 bool canPlayerMove = true;
 bool canUseGravity = true;
 
+bool cameraReachedBottom = false;
+bool cameraReachedTop = false;
+
+float testXoffeset = 0;
+float testYoffeset = 1;
+float testZoffeset = 0;
+
+double camXYAngle=0;
+double camXZAngle=0;
+int lastX = 0;
+int lastY = 0;
+int zoom = 50;
+bool canMoveCamera = false;
+float lastY1;
+
 Tiro * tiro = NULL; //Um tiro por vez
 enemyTiro * enemyTiroArray[7] = {nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr};
 
@@ -95,7 +110,7 @@ void CheckPlayerGameWon();
 void ResetGame();
 
 void RandomEnemyShoot(GLdouble diference);
-
+void ThirdPersonView();
 void init(int i);
 void display();
 
@@ -197,6 +212,24 @@ void keyPress(unsigned char key, int x, int y)
         case 'R':
             ResetGame();
             break;
+        case 'z':
+        case 'Z':
+            testYoffeset--;
+            break;
+        case 'x':
+        case 'X':
+            canMoveCamera = !canMoveCamera;
+            break;
+        case 'c':
+        case 'C':
+            testYoffeset++;
+            break;
+        case '+':
+            zoom++;
+            break;
+        case '-':
+            zoom--;
+            break;
 
 
         case 27 :
@@ -268,7 +301,9 @@ void init(int w, int h)
     glLoadIdentity();
 
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
+
     gluPerspective (50,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
+
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
     //gluOrtho2D(-45.9,45.9,-45.9,45.9);
     //glOrtho(-45.9,45.9,-45.9,45.9, 0.1,1000);
@@ -727,6 +762,27 @@ void passive(int x1,int y1) {
     }
     Player.RodaBraco(-deltaY);
 
+
+    if(canMoveCamera){
+
+        cout << "y1: "<< y1 <<" lasty1: " << lastY1 << " " << (y1 > 60) << endl;
+        camXZAngle -= x1/1.5 - lastX;
+
+        if(y1 < lastY1 && y1 < 350){
+            cameraReachedBottom = false;
+        }
+        if(y1 > lastY1 && y1 > 60){
+            cameraReachedTop = false;
+        }
+
+        if(!cameraReachedBottom && !cameraReachedTop)
+            camXYAngle += y1/1.5 - lastY;
+
+        lastX = x1/1.5;
+        lastY = y1/1.5;
+
+        lastY1 = y1;
+    }
 }
 
 void MyMouse(int button, int state, int x, int y)
@@ -841,7 +897,31 @@ void display(void)
     //GLfloat light_position[] = { 0.0, 3.0, 10.0, 1.0 };
     //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
     //gluLookAt(-250,-180,60, -130,-180,0, 0,1,0);
-    gluLookAt(-1,-180,500, -1,-180,0, 0,1,0);
+    //gluLookAt(-1,-180,500, -1,-180,0, 0,1,0); //2D
+    float playerPosX;
+    float playerPosY;
+    Player.GetPos(playerPosX,playerPosY);
+    //gluLookAt(playerPosX +testXoffeset ,playerPosY+testYoffeset,50+testZoffeset, playerPosX,playerPosY,25, 0,1,0);
+
+    //float yValue = sin((camY * M_PI / 180));
+    //cout << playerPosY +zoom* sin((camY*M_PI/180)) << endl;
+    float yValue = sin(camXYAngle*M_PI/180);
+    if(yValue < -0.80){
+        yValue = -0.80;
+        cameraReachedBottom = true;
+    }
+    if(yValue > 0.80){
+        yValue = 0.80;
+        cameraReachedTop = true;
+    }
+    //cout << yValue <<" " <<cameraReachedTop <<" " << cameraReachedBottom<< endl;
+    //carPosition + vec3(20*cos(carAngle), 10,20*sin(carAngle))
+    //cout << "y: " << yValue << endl;
+    gluLookAt(playerPosX + zoom * cos(camXZAngle*M_PI/180),
+              playerPosY + zoom * yValue,
+              25         + zoom * sin(camXZAngle*M_PI/180),
+               playerPosX, playerPosY, 25,
+                    0, 1, 0);
 
 
     Cenario.Desenha();
@@ -850,15 +930,12 @@ void display(void)
         Player.Desenha();
 
     if (tiro) tiro->Desenha();
+
+
     for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
         if(enemiesArray[i].canBeDrawn)
             Enemy.Desenha(i, enemiesArray[i]);
     }
-    glPushMatrix();
-    glTranslatef(-157,-180,0);
-    glPopMatrix();
-    ExibirTexto();
-
 
     if(canEnemiesShoot){
         for(int i=0; i<sizeof(enemyTiroArray)/sizeof(enemyTiroArray[0]); i++){
@@ -866,8 +943,6 @@ void display(void)
                 enemyTiroArray[i]->Desenha();
         }
     }
-
-
 
     glutSwapBuffers();
 }

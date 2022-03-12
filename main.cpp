@@ -87,6 +87,9 @@ float testXoffeset = 0;
 float testYoffeset = 1;
 float testZoffeset = 0;
 
+float fpCamY;
+float fpCamX;
+
 double camXYAngle=0;
 double camXZAngle=0;
 int lastX = 0;
@@ -214,7 +217,7 @@ void keyPress(unsigned char key, int x, int y)
             break;
         case 'z':
         case 'Z':
-            testYoffeset--;
+            testYoffeset-= 10;
             break;
         case 'x':
         case 'X':
@@ -222,7 +225,7 @@ void keyPress(unsigned char key, int x, int y)
             break;
         case 'c':
         case 'C':
-            testYoffeset++;
+            testYoffeset += 10;
             break;
         case '+':
             zoom++;
@@ -302,7 +305,8 @@ void init(int w, int h)
 
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
 
-    gluPerspective (50,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
+    //todo fov para first person e third person
+    gluPerspective (100,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
 
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
     //gluOrtho2D(-45.9,45.9,-45.9,45.9);
@@ -783,6 +787,17 @@ void passive(int x1,int y1) {
 
         lastY1 = y1;
     }
+
+
+
+    cout << y1 - 150 << endl;
+    fpCamY = y1 - 150;
+    if(fpCamY > 320)
+        fpCamY = 320;
+    if(fpCamY < -50)
+        fpCamY = -50;
+
+    fpCamX = x1;
 }
 
 void MyMouse(int button, int state, int x, int y)
@@ -917,12 +932,17 @@ void display(void)
     //cout << yValue <<" " <<cameraReachedTop <<" " << cameraReachedBottom<< endl;
     //carPosition + vec3(20*cos(carAngle), 10,20*sin(carAngle))
     //cout << "y: " << yValue << endl;
+
+    /* #### Third person camera ##########
     gluLookAt(playerPosX + zoom * cos(camXZAngle*M_PI/180),
               playerPosY + zoom * yValue,
               25         + zoom * sin(camXZAngle*M_PI/180),
                playerPosX, playerPosY, 25,
                     0, 1, 0);
+    */
 
+    cout << testYoffeset << endl;
+    gluLookAt(playerPosX + 0.2,playerPosY + 2.7,25, playerPosX + 200,-fpCamY,25, 0,1,0);
 
     Cenario.Desenha();
 

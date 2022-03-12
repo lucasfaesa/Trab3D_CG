@@ -131,8 +131,7 @@ void Player::DesenhaBraco(GLfloat x, GLfloat y, GLfloat theta1)
         glScalef(1,1,1);
     else
         glScalef(-1,1,1);
-
-    DesenhaRect(bracoHeight,bracoWidth,bracoExtrusion,1,1,0,1);
+    DesenhaRect(bracoHeight,bracoWidth,bracoExtrusion,0,0,0,1);
     glPopMatrix();
 }
 

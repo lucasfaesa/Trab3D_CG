@@ -217,7 +217,7 @@ void keyPress(unsigned char key, int x, int y)
             break;
         case 'z':
         case 'Z':
-            testYoffeset-= 10;
+            testYoffeset-= 1;
             break;
         case 'x':
         case 'X':
@@ -225,7 +225,7 @@ void keyPress(unsigned char key, int x, int y)
             break;
         case 'c':
         case 'C':
-            testYoffeset += 10;
+            testYoffeset += 1;
             break;
         case '+':
             zoom++;
@@ -306,7 +306,7 @@ void init(int w, int h)
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
 
     //todo fov para first person e third person
-    gluPerspective (100,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
+    gluPerspective (50,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
 
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
     //gluOrtho2D(-45.9,45.9,-45.9,45.9);
@@ -769,7 +769,7 @@ void passive(int x1,int y1) {
 
     if(canMoveCamera){
 
-        cout << "y1: "<< y1 <<" lasty1: " << lastY1 << " " << (y1 > 60) << endl;
+       // cout << "y1: "<< y1 <<" lasty1: " << lastY1 << " " << (y1 > 60) << endl;
         camXZAngle -= x1/1.5 - lastX;
 
         if(y1 < lastY1 && y1 < 350){
@@ -790,7 +790,7 @@ void passive(int x1,int y1) {
 
 
 
-    cout << y1 - 150 << endl;
+  //  cout << y1 - 150 << endl;
     fpCamY = y1 - 150;
     if(fpCamY > 320)
         fpCamY = 320;
@@ -905,17 +905,21 @@ int main(int argc, char *argv[])
 void display(void)
 {
     glClear (GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
+    cout << testYoffeset << endl;
 
+    GLfloat light_position[] = { -890, 1600 , 283.0, 0.0 };
+    glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
     //glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    //GLfloat light_position[] = { 0.0, 3.0, 10.0, 1.0 };
-    //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
+
+    //glDisable (GL_LIGHTING);
     //gluLookAt(-250,-180,60, -130,-180,0, 0,1,0);
     //gluLookAt(-1,-180,500, -1,-180,0, 0,1,0); //2D
     float playerPosX;
     float playerPosY;
     Player.GetPos(playerPosX,playerPosY);
+
     //gluLookAt(playerPosX +testXoffeset ,playerPosY+testYoffeset,50+testZoffeset, playerPosX,playerPosY,25, 0,1,0);
 
     //float yValue = sin((camY * M_PI / 180));
@@ -933,16 +937,17 @@ void display(void)
     //carPosition + vec3(20*cos(carAngle), 10,20*sin(carAngle))
     //cout << "y: " << yValue << endl;
 
-    /* #### Third person camera ##########
+    // #### Third person camera ##########
     gluLookAt(playerPosX + zoom * cos(camXZAngle*M_PI/180),
               playerPosY + zoom * yValue,
               25         + zoom * sin(camXZAngle*M_PI/180),
                playerPosX, playerPosY, 25,
                     0, 1, 0);
-    */
 
-    cout << testYoffeset << endl;
-    gluLookAt(playerPosX + 0.2,playerPosY + 2.7,25, playerPosX + 200,-fpCamY,25, 0,1,0);
+
+    //cout << testYoffeset << endl;
+    //### first person camera ########
+    //gluLookAt(playerPosX + 0.2,playerPosY + 2.7,25, playerPosX + 200,-fpCamY,25, 0,1,0);
 
     Cenario.Desenha();
 
@@ -1016,15 +1021,17 @@ void init(int windowSize) {
     int G = 0.2;
     int B = 1;
 
-    glClearColor (1.0, 0.3, 0.0, 0.0);
+    //glClearColor (1.0, 0.3, 0.0, 0.0);
+    glClearColor (0.0, 0.0, 0.0, 0.0);
     //glShadeModel (GL_FLAT);
     glShadeModel (GL_SMOOTH);
     glEnable(GL_CULL_FACE);
+
     //glFrontFace(GL_CW);
     //glCullFace(GL_BACK);
-    /*
+
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);*/
+    glEnable(GL_LIGHT0);
     glEnable(GL_DEPTH_TEST);
     glViewport (0, 0, (GLsizei) windowSize,(GLsizei) windowSize);
     glMatrixMode (GL_PROJECTION);

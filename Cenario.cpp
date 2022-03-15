@@ -59,8 +59,6 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
         glVertex3f(width/2,0, -0);
         glVertex3f(width/2, height, -0); //z metade da altura do fundo azul
 
-
-
     glEnd();
 
     glBegin(GL_QUADS);
@@ -70,9 +68,6 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
         glVertex3f(-width/2, 0, -0);
         glVertex3f(-width/2,height, -0);
         glVertex3f(-width/2, height, 45.8); //z metade da altura do fundo azul
-
-
-
     glEnd();
 
     glBegin(GL_QUADS);
@@ -86,7 +81,7 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
 
     glBegin(GL_QUADS);
         glColor3f(1,1,0);// Face superior
-        glNormal3f(0.0, -1.0, 0.0);	// Normal da face
+        glNormal3f(0.0, 1.0, 0.0);	// Normal da face
         glVertex3f(-width/2, 0, 45.8);
         glVertex3f(width/2, 0, 45.8);
         glVertex3f(width/2,0, -0);
@@ -95,15 +90,12 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
 
     glBegin(GL_QUADS);
         glColor3f(1,1,1);// Face inferior
-        glNormal3f(0.0, 1.0, 0.0);	// Normal da face
+        glNormal3f(0.0, -1.0, 0.0);	// Normal da face
         glVertex3f(width/2, height, -0);
         glVertex3f(width/2, height, 45.8);
         glVertex3f(-width/2,height, 45.8);
         glVertex3f(-width/2, height, -0); //z metade da altura do fundo azul
     glEnd();
-
-
-
 
 
     /*glVertex2f(width/2, height); //z metade da altura do fundo azul

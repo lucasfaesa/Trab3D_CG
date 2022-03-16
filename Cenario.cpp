@@ -12,7 +12,7 @@ using namespace std;
 int cont = 0;
 int zzzz = 0;
 
-void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, string color)
+void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, string color, GLuint texture)
 {
     float R = 0;
     float G = 0;
@@ -27,73 +27,108 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
         B = 0;
     }
 
-    if(color == "blue"){
+    if(color == "blue"){ //TODO REMOVER ISSO
         return;
     }
 
+    GLfloat materialEmission[] = { 0.10, 0.10, 0.10, 1};
+    GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
+    GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
+    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1};
+    GLfloat mat_shininess[] = { 100.0 };
+
+    glMaterialfv(GL_FRONT, GL_EMISSION, materialEmission);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, materialColorA);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, materialColorD);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT  );//X
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );//Y
+    glBindTexture (GL_TEXTURE_2D, texture);
+
+    double textureS = 1; // Bigger than 1, repeat
     glPushMatrix();
 
     glTranslatef(x+width/2,y,0);
-    /*glTranslatef(x,y,0);
-
-    glColor3f(1,1,0);// Face posterior
-    glutSolidCube(2.0);*/
-
-    //height = -height;
 
     glBegin(GL_QUADS);
-        glColor3f(1,0,0.3);// Face posterior
+        //glColor3f(1,0,0.3);// Face posterior
         glNormal3f(0.0, 0.0, 1.0);	// Normal da face
+        glTexCoord2f (0, 0);
         glVertex3f(width/2, 0, 45.8);
+        glTexCoord2f (0, textureS);
         glVertex3f(-width/2, 0, 45.8);
+        glTexCoord2f (textureS, textureS);
         glVertex3f(-width/2,height, 45.8);
+        glTexCoord2f (textureS, 0);
         glVertex3f(width/2, height, 45.8); //z metade da altura do fundo azul
 
     glEnd();
 
     glBegin(GL_QUADS);
-        glColor3f(1,0,0);// Face  traseira
+        //glColor3f(1,0,0);// Face  traseira
         glNormal3f(0.0, 0.0, -1.0);	// Normal da face
+        glTexCoord2f (0, 0);
         glVertex3f(-width/2, height, -0);
+        glTexCoord2f (0, textureS);
         glVertex3f(-width/2, 0, -0);
+        glTexCoord2f (textureS, textureS);
         glVertex3f(width/2,0, -0);
+        glTexCoord2f (textureS, 0);
         glVertex3f(width/2, height, -0); //z metade da altura do fundo azul
 
     glEnd();
 
     glBegin(GL_QUADS);
-        glColor3f(0,1,0);// Face lateral esquerda
+        //glColor3f(0,1,0);// Face lateral esquerda
         glNormal3f(-1.0, 0.0, 0.0);	// Normal da face
+        glTexCoord2f (0, 0);
         glVertex3f(-width/2, 0, 45.8);
+        glTexCoord2f (0, textureS);
         glVertex3f(-width/2, 0, -0);
+        glTexCoord2f (textureS, textureS);
         glVertex3f(-width/2,height, -0);
+        glTexCoord2f (textureS, 0);
         glVertex3f(-width/2, height, 45.8); //z metade da altura do fundo azul
     glEnd();
 
     glBegin(GL_QUADS);
-        glColor3f(1.0,0,0);// Face lateral direita
+        //glColor3f(1.0,0,0);// Face lateral direita
         glNormal3f(1.0, 0.0, 0.0);	// Normal da face
+        glTexCoord2f (0, 0);
         glVertex3f(width/2, height, -0);
+        glTexCoord2f (0, textureS);
         glVertex3f(width/2, 0, -0);
+        glTexCoord2f (textureS, textureS);
         glVertex3f(width/2,0, 45.8);
+        glTexCoord2f (textureS, 0);
         glVertex3f(width/2, height, 45.8); //z metade da altura do fundo azul
     glEnd();
 
     glBegin(GL_QUADS);
-        glColor3f(1,1,0);// Face superior
+        //glColor3f(1,1,0);// Face superior
         glNormal3f(0.0, 1.0, 0.0);	// Normal da face
+        glTexCoord2f (0, 0);
         glVertex3f(-width/2, 0, 45.8);
+        glTexCoord2f (0, textureS);
         glVertex3f(width/2, 0, 45.8);
+        glTexCoord2f (textureS, textureS);
         glVertex3f(width/2,0, -0);
+        glTexCoord2f (textureS, 0);
         glVertex3f(-width/2, 0, -0); //z metade da altura do fundo azul
     glEnd();
 
     glBegin(GL_QUADS);
-        glColor3f(1,1,1);// Face inferior
+        //glColor3f(1,1,1);// Face inferior
         glNormal3f(0.0, -1.0, 0.0);	// Normal da face
+        glTexCoord2f (0, 0);
         glVertex3f(width/2, height, -0);
+        glTexCoord2f (0, textureS);
         glVertex3f(width/2, height, 45.8);
+        glTexCoord2f (textureS, textureS);
         glVertex3f(-width/2,height, 45.8);
+        glTexCoord2f (textureS, 0);
         glVertex3f(-width/2, height, -0); //z metade da altura do fundo azul
     glEnd();
 
@@ -136,12 +171,12 @@ void Cenario::DesenhaCirc(GLfloat x, GLfloat y, GLfloat radius, string color)
     glPopMatrix();
 }
 
-void Cenario::DesenhaCenario() {
+void Cenario::DesenhaCenario(GLuint textureCobble) {
 
     for(int i =0; i<sizeof(boxesObj); i++){
         if(boxesObj[i].height == 0) break;
 
-        DesenhaRect(boxesObj[i].xPos,boxesObj[i].yPos,boxesObj[i].height,boxesObj[i].width,boxesObj[i].color);
+        DesenhaRect(boxesObj[i].xPos,boxesObj[i].yPos,boxesObj[i].height,boxesObj[i].width,boxesObj[i].color, textureCobble);
     }
 
    // DesenhaRect(-163.5, -187.2, -10,364.1373,"black");
@@ -193,4 +228,46 @@ void Cenario::GetCenarioFromSvg() {
     cont = 0;
 }
 
+void Cenario::DesenhaParedeTest(GLuint earth) {
+    glPushMatrix();
+
+    glTranslatef(-157,-180,-12);
+    glScalef(70,70,1);
+    glRotatef(90,1,0,0);
+
+    GLfloat materialEmission[] = { 1.0, 1.0, 1.0, 1};
+    GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
+    GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
+    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1};
+    GLfloat mat_shininess[] = { 100.0 };
+    glColor3f(1,1,1);
+
+    glMaterialfv(GL_FRONT, GL_EMISSION, materialEmission);
+    glMaterialfv(GL_FRONT, GL_AMBIENT, materialColorA);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, materialColorD);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT  );//X
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );//Y
+
+    glBindTexture (GL_TEXTURE_2D, earth);
+    double textureS = 1; // Bigger than 1, repeat
+    glBegin (GL_QUADS);
+    glNormal3f(0,1,0);
+    glTexCoord2f (0, 0);
+    glVertex3f (-1, 0, -1);
+    glNormal3f(0,1,0);
+    glTexCoord2f (0, textureS);
+    glVertex3f (-1, 0, +1);
+    glNormal3f(0,1,0);
+    glTexCoord2f (textureS, textureS);
+    glVertex3f (+1, 0, +1);
+    glNormal3f(0,1,0);
+    glTexCoord2f (textureS, 0);
+    glVertex3f (+1, 0, -1);
+    glEnd();
+    glPopMatrix();
+    //glDisable(GL_TEXTURE_2D);
+}
 

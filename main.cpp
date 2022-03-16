@@ -10,6 +10,7 @@
 #include "enemy.h"
 #include <algorithm>
 #include <cmath>
+#include "imageloader.h"
 
 #define INC_KEY 1
 #define INC_KEYIDLE 0.02 //player X Speed
@@ -98,10 +99,12 @@ int zoom = 50;
 bool canMoveCamera = false;
 float lastY1;
 
+GLuint textureEarth;
+
 Tiro * tiro = NULL; //Um tiro por vez
 enemyTiro * enemyTiroArray[7] = {nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr};
 
-
+GLuint LoadTextureRAW( const char * filename );
 void CheckKeyPress(GLdouble diference);
 void CheckPlayerCollision();
 void MoveCamera();
@@ -120,6 +123,8 @@ void display();
 void DrawAxes(double d);
 
 void DrawObj(double d);
+
+void DisplayPlane(GLuint earth);
 
 // Window dimensions
 const GLint Width = 500;
@@ -167,7 +172,7 @@ void renderScene(void)
     // Clear the screen.
     glClear(GL_COLOR_BUFFER_BIT);
 
-    Cenario.Desenha();
+    //Cenario.Desenha();
 
     if(drawPlayer)
         Player.Desenha();
@@ -905,7 +910,7 @@ int main(int argc, char *argv[])
 void display(void)
 {
     glClear (GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
-    cout << testYoffeset << endl;
+    //cout << testYoffeset << endl;
 
     GLfloat light_position[] = { -890, 1600 , 283.0, 0.0 };
     glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
@@ -949,12 +954,30 @@ void display(void)
     //### first person camera ########
     //gluLookAt(playerPosX + 0.2,playerPosY + 2.7,25, playerPosX + 200,-fpCamY,25, 0,1,0);
 
-    Cenario.Desenha();
 
+    glEnable(GL_TEXTURE_2D);
+    Cenario.Desenha(textureEarth);
+    //Cenario.Test(textureEarth);
+    glDisable(GL_TEXTURE_2D);
+    //glEnable(GL_LIGHTING);
     if(drawPlayer)
         Player.Desenha();
 
     if (tiro) tiro->Desenha();
+
+    /*glEnable(GL_TEXTURE_2D);
+    glPushMatrix();
+
+        glTranslatef(-157,-180,-12);
+        glScalef(70,70,1);
+        glRotatef(90,1,0,0);
+        //glutSolidCube(2.0);
+        DisplayPlane (textureEarth);
+    glPopMatrix();
+
+    glDisable(GL_TEXTURE_2D);*/
+
+
 
 
     for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
@@ -984,6 +1007,8 @@ void init(int windowSize) {
         Cenario.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
         Enemy.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
     }
+
+
 
     srand (time(NULL));
 
@@ -1024,22 +1049,54 @@ void init(int windowSize) {
     //glClearColor (1.0, 0.3, 0.0, 0.0);
     glClearColor (0.0, 0.0, 0.0, 0.0);
     //glShadeModel (GL_FLAT);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_LIGHTING);
     glShadeModel (GL_SMOOTH);
-    glEnable(GL_CULL_FACE);
-
+    //glEnable(GL_CULL_FACE);
     //glFrontFace(GL_CW);
     //glCullFace(GL_BACK);
+    glDepthFunc(GL_LEQUAL);
 
-    glEnable(GL_LIGHTING);
+    textureEarth = LoadTextureRAW( "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/CobbleTexture.bmp" );
+    //glDisable(GL_TEXTURE_2D);
+
     glEnable(GL_LIGHT0);
-    glEnable(GL_DEPTH_TEST);
+
     glViewport (0, 0, (GLsizei) windowSize,(GLsizei) windowSize);
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity();
+
 
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
     //gluOrtho2D(-45.9,45.9,-45.9,45.9);
     //gluPerspective (50,(GLfloat)windowSize/(GLfloat)windowSize,0.1, 1000);
     //glOrtho (-3, 3, -3*(GLfloat)windowSize/(GLfloat)windowSize, 3*(GLfloat)windowSize/(GLfloat)windowSize, 1.0, 15.0);
+}
+
+GLuint LoadTextureRAW( const char * filename )
+{
+    GLuint texture;
+
+    Image* image = loadBMP(filename);
+
+    glGenTextures( 1, &texture );
+    glBindTexture( GL_TEXTURE_2D, texture );
+    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_MODULATE );
+//    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR );
+    glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
+                 0,                            //0 for now
+                 GL_RGB,                       //Format OpenGL uses for image
+                 image->width, image->height,  //Width and height
+                 0,                            //The border of the image
+                 GL_RGB, //GL_RGB, because pixels are stored in RGB format
+                 GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored
+            //as unsigned numbers
+                 image->pixels);               //The actual pixel data
+    delete image;
+
+    return texture;
 }
 

@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Trabalhocg.dir/enemy.cpp.obj.d"
   "CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj"
   "CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj.d"
+  "CMakeFiles/Trabalhocg.dir/imageloader.cpp.obj"
+  "CMakeFiles/Trabalhocg.dir/imageloader.cpp.obj.d"
   "CMakeFiles/Trabalhocg.dir/main.cpp.obj"
   "CMakeFiles/Trabalhocg.dir/main.cpp.obj.d"
   "CMakeFiles/Trabalhocg.dir/player.cpp.obj"

@@ -100,6 +100,12 @@
 		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/enemyTiro.h">
 			<Option target="Trabalhocg"/>
 		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/imageloader.cpp">
+			<Option target="Trabalhocg"/>
+		</Unit>
+		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/imageloader.h">
+			<Option target="Trabalhocg"/>
+		</Unit>
 		<Unit filename="C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/main.cpp">
 			<Option target="Trabalhocg"/>
 		</Unit>

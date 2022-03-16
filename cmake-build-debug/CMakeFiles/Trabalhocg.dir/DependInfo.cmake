@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/Cenario.cpp" "CMakeFiles/Trabalhocg.dir/Cenario.cpp.obj" "gcc" "CMakeFiles/Trabalhocg.dir/Cenario.cpp.obj.d"
   "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/enemy.cpp" "CMakeFiles/Trabalhocg.dir/enemy.cpp.obj" "gcc" "CMakeFiles/Trabalhocg.dir/enemy.cpp.obj.d"
   "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/enemyTiro.cpp" "CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj" "gcc" "CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.obj.d"
+  "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/imageloader.cpp" "CMakeFiles/Trabalhocg.dir/imageloader.cpp.obj" "gcc" "CMakeFiles/Trabalhocg.dir/imageloader.cpp.obj.d"
   "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/main.cpp" "CMakeFiles/Trabalhocg.dir/main.cpp.obj" "gcc" "CMakeFiles/Trabalhocg.dir/main.cpp.obj.d"
   "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/player.cpp" "CMakeFiles/Trabalhocg.dir/player.cpp.obj" "gcc" "CMakeFiles/Trabalhocg.dir/player.cpp.obj.d"
   "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/tinyxml2.cpp" "CMakeFiles/Trabalhocg.dir/tinyxml2.cpp.obj" "gcc" "CMakeFiles/Trabalhocg.dir/tinyxml2.cpp.obj.d"

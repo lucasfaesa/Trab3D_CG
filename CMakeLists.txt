@@ -16,6 +16,6 @@ if(NOT OPENGL_FOUND)
     message(ERROR "OPENGL not found!")
 endif(NOT OPENGL_FOUND)
 
-add_executable(Trabalhocg main.cpp player.cpp player.h tinyxml2.cpp tinyxml2.h Cenario.cpp Cenario.h tiro.cpp tiro.h enemy.cpp enemy.h enemyTiro.cpp enemyTiro.h)
+add_executable(Trabalhocg main.cpp player.cpp player.h tinyxml2.cpp tinyxml2.h Cenario.cpp Cenario.h tiro.cpp tiro.h enemy.cpp enemy.h enemyTiro.cpp enemyTiro.h imageloader.h imageloader.cpp)
 
 target_link_libraries(Trabalhocg ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})

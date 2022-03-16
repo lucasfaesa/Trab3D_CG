@@ -200,6 +200,30 @@ enemyTiro.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Trabalhocg.dir\build.make CMakeFiles/Trabalhocg.dir/enemyTiro.cpp.s
 .PHONY : enemyTiro.cpp.s
 
+imageloader.obj: imageloader.cpp.obj
+.PHONY : imageloader.obj
+
+# target to build an object file
+imageloader.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Trabalhocg.dir\build.make CMakeFiles/Trabalhocg.dir/imageloader.cpp.obj
+.PHONY : imageloader.cpp.obj
+
+imageloader.i: imageloader.cpp.i
+.PHONY : imageloader.i
+
+# target to preprocess a source file
+imageloader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Trabalhocg.dir\build.make CMakeFiles/Trabalhocg.dir/imageloader.cpp.i
+.PHONY : imageloader.cpp.i
+
+imageloader.s: imageloader.cpp.s
+.PHONY : imageloader.s
+
+# target to generate assembly for a file
+imageloader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Trabalhocg.dir\build.make CMakeFiles/Trabalhocg.dir/imageloader.cpp.s
+.PHONY : imageloader.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -314,6 +338,9 @@ help:
 	@echo ... enemyTiro.obj
 	@echo ... enemyTiro.i
 	@echo ... enemyTiro.s
+	@echo ... imageloader.obj
+	@echo ... imageloader.i
+	@echo ... imageloader.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

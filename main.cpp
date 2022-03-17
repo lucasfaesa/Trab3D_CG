@@ -99,7 +99,12 @@ int zoom = 50;
 bool canMoveCamera = false;
 float lastY1;
 
-GLuint textureEarth;
+GLuint texturePlatformsTop;
+GLuint texturePlatformsSide;
+GLuint texturePlayerChest;
+GLuint texturePlayerHead;
+GLuint texturePlayerLeg;
+GLuint texturePlayerArm;
 
 Tiro * tiro = NULL; //Um tiro por vez
 enemyTiro * enemyTiroArray[7] = {nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr};
@@ -174,8 +179,8 @@ void renderScene(void)
 
     //Cenario.Desenha();
 
-    if(drawPlayer)
-        Player.Desenha();
+   /* if(drawPlayer)
+        Player.Desenha();*/
 
     for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
         if(enemiesArray[i].canBeDrawn)
@@ -956,12 +961,14 @@ void display(void)
 
 
     glEnable(GL_TEXTURE_2D);
-    Cenario.Desenha(textureEarth);
-    //Cenario.Test(textureEarth);
+    Cenario.Desenha(texturePlatformsTop, texturePlatformsSide);
+    if(drawPlayer)
+        Player.Desenha(texturePlayerChest,texturePlayerArm,texturePlayerLeg,texturePlayerHead);
+    //Cenario.Test(texturePlatforms);
     glDisable(GL_TEXTURE_2D);
     //glEnable(GL_LIGHTING);
-    if(drawPlayer)
-        Player.Desenha();
+    /*if(drawPlayer)
+        Player.Desenha();*/
 
     if (tiro) tiro->Desenha();
 
@@ -972,7 +979,7 @@ void display(void)
         glScalef(70,70,1);
         glRotatef(90,1,0,0);
         //glutSolidCube(2.0);
-        DisplayPlane (textureEarth);
+        DisplayPlane (texturePlatforms);
     glPopMatrix();
 
     glDisable(GL_TEXTURE_2D);*/
@@ -1012,6 +1019,7 @@ void init(int windowSize) {
 
     srand (time(NULL));
 
+    Player.CreatePlayerHead();
     Enemy.GetFromSvg();
     Cenario.GetFromSvg();
 
@@ -1058,7 +1066,12 @@ void init(int windowSize) {
     //glCullFace(GL_BACK);
     glDepthFunc(GL_LEQUAL);
 
-    textureEarth = LoadTextureRAW( "C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/CobbleTexture.bmp" );
+    texturePlatformsTop = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/GrassTextureTop.bmp");
+    texturePlatformsSide = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/GrassTextureSides.bmp" );
+    texturePlayerChest = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/playerChest.bmp");
+    texturePlayerArm = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/playerArm.bmp");
+    texturePlayerLeg = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/playerLeg.bmp");
+    texturePlayerHead = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/playerHead.bmp");
     //glDisable(GL_TEXTURE_2D);
 
     glEnable(GL_LIGHT0);

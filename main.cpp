@@ -232,6 +232,7 @@ void keyPress(unsigned char key, int x, int y)
         case 'z':
         case 'Z':
             testYoffeset-= 1;
+            glEnable(GL_LIGHT0);
             break;
         case 'x':
         case 'X':
@@ -240,6 +241,7 @@ void keyPress(unsigned char key, int x, int y)
         case 'c':
         case 'C':
             testYoffeset += 1;
+            glDisable(GL_LIGHT0);
             break;
         case '+':
             zoom++;

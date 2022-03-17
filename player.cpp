@@ -85,7 +85,7 @@ void Player::DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLflo
     else
         glScalef(-1,1,1);*/
 
-    GLfloat materialEmission[] = { 0.10, 0.10, 0.10, 1};
+    GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1};
     GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
     GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1};
@@ -196,7 +196,7 @@ void Player::DesenhaCabeca(GLfloat x, GLfloat y, GLfloat radius, GLfloat R, GLfl
     glutSolidSphere(radius,20,10);*/
 
 
-    GLfloat materialEmission[] = { 0.10, 0.10, 0.10, 1};
+    GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1};
     GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
     GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1};

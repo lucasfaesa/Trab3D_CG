@@ -29,7 +29,7 @@ typedef struct
     double radius;
 } OBJ;
 
-OBJ* objEarth;
+OBJ* objHead;
 
 float CabecaRadius = 1;
 float troncoHeight  = 3.8;
@@ -75,7 +75,7 @@ float minRotE2 = 0;
 bool reversed;
 
 
-OBJ *CreateSphere(double R, double space);
+OBJ *CreatePlayerSphere(double R, double space);
 
 void Player::DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloat R, GLfloat G, GLfloat B, GLfloat A, GLuint texture)
 {
@@ -211,11 +211,11 @@ void Player::DesenhaCabeca(GLfloat x, GLfloat y, GLfloat radius, GLfloat R, GLfl
 
     glBindTexture (GL_TEXTURE_2D, textureHead);
     glBegin (GL_TRIANGLE_STRIP);
-    for ( int i = 0; i <objEarth->numVtx; i++)
+    for (int i = 0; i < objHead->numVtx; i++)
     {
-        glNormal3f(objEarth->vtx[i].nX, objEarth->vtx[i].nY, objEarth->vtx[i].nZ);
-        glTexCoord2f (objEarth->vtx[i].U, objEarth->vtx[i].V);
-        glVertex3f (objEarth->vtx[i].X, objEarth->vtx[i].Y, objEarth->vtx[i].Z);
+        glNormal3f(objHead->vtx[i].nX, objHead->vtx[i].nY, objHead->vtx[i].nZ);
+        glTexCoord2f (objHead->vtx[i].U, objHead->vtx[i].V);
+        glVertex3f (objHead->vtx[i].X, objHead->vtx[i].Y, objHead->vtx[i].Z);
     }
     glEnd();
 
@@ -240,7 +240,7 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
     if(facingRight){ //TODO TROCAR PARA LOOP FOR
 
         glPushMatrix();
-            glTranslatef(x,y,0);
+            glTranslatef(x,y,0.3);
             glScalef(-1,1,1);
             glRotatef(pEtheta1,0,0,1);
             DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,0,1,0,1,textureLeg); //desenhando primeira perna esquerda
@@ -250,6 +250,7 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
         glPopMatrix();
 
         glPushMatrix();
+            glTranslatef(x,y,-0.3);
             glScalef(-1,1,1);
             glRotatef(pDtheta1,0,0,1);
             DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,1,0,0,1,textureLeg); //desenhando primeira perna direita
@@ -259,7 +260,7 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
         glPopMatrix();
     }else{
         glPushMatrix();
-            glTranslatef(x,y,0);
+            glTranslatef(x,y,0.3);
             glRotatef(pDtheta1,0,0,1);
             DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,1,0,0,1,textureLeg); //desenhando primeira perna direita
             glTranslatef(0,-pernaHeight,0);
@@ -268,6 +269,7 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
         glPopMatrix();
 
         glPushMatrix();
+            glTranslatef(x,y,-0.3);
             glRotatef(pEtheta1,0,0,1);
             DesenhaRect(-pernaHeight,pernaWidth,pernaExtrusion,0,1,0,1,textureLeg); //desenhando primeira perna esquerda
             glTranslatef(0,-pernaHeight,0);
@@ -620,10 +622,10 @@ void Player::MoveEmMenosY(GLfloat dy, bool jumping)
 }
 
 void Player::CreatePlayerHead(){
-    objEarth = CreateSphere(CabecaRadius, 10);
+    objHead = CreatePlayerSphere(CabecaRadius, 10);
 }
 
-OBJ *CreateSphere(double R, double space) {
+OBJ *CreatePlayerSphere(double R, double space) {
     OBJ *obj = new OBJ;
 
     obj->numVtx = (180 / space) *

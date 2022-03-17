@@ -105,6 +105,10 @@ GLuint texturePlayerChest;
 GLuint texturePlayerHead;
 GLuint texturePlayerLeg;
 GLuint texturePlayerArm;
+GLuint textureEnemyChest;
+GLuint textureEnemyHead;
+GLuint textureEnemyLeg;
+GLuint textureEnemyArm;
 
 Tiro * tiro = NULL; //Um tiro por vez
 enemyTiro * enemyTiroArray[7] = {nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr};
@@ -182,10 +186,10 @@ void renderScene(void)
    /* if(drawPlayer)
         Player.Desenha();*/
 
-    for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+    /*for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
         if(enemiesArray[i].canBeDrawn)
             Enemy.Desenha(i, enemiesArray[i]);
-    }
+    }*/
 
     ExibirTexto();
 
@@ -965,6 +969,11 @@ void display(void)
     if(drawPlayer)
         Player.Desenha(texturePlayerChest,texturePlayerArm,texturePlayerLeg,texturePlayerHead);
     //Cenario.Test(texturePlatforms);
+
+    for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+        if(enemiesArray[i].canBeDrawn)
+            Enemy.Desenha(i, enemiesArray[i],textureEnemyChest,textureEnemyArm,textureEnemyLeg,textureEnemyHead);
+    }
     glDisable(GL_TEXTURE_2D);
     //glEnable(GL_LIGHTING);
     /*if(drawPlayer)
@@ -985,12 +994,6 @@ void display(void)
     glDisable(GL_TEXTURE_2D);*/
 
 
-
-
-    for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
-        if(enemiesArray[i].canBeDrawn)
-            Enemy.Desenha(i, enemiesArray[i]);
-    }
 
     if(canEnemiesShoot){
         for(int i=0; i<sizeof(enemyTiroArray)/sizeof(enemyTiroArray[0]); i++){
@@ -1020,6 +1023,7 @@ void init(int windowSize) {
     srand (time(NULL));
 
     Player.CreatePlayerHead();
+    Enemy.CreateEnemyHead();
     Enemy.GetFromSvg();
     Cenario.GetFromSvg();
 
@@ -1068,10 +1072,17 @@ void init(int windowSize) {
 
     texturePlatformsTop = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/GrassTextureTop.bmp");
     texturePlatformsSide = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/GrassTextureSides.bmp" );
+
     texturePlayerChest = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/playerChest.bmp");
     texturePlayerArm = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/playerArm.bmp");
     texturePlayerLeg = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/playerLeg.bmp");
     texturePlayerHead = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/playerHead.bmp");
+
+    textureEnemyChest = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/enemyChest.bmp");
+    textureEnemyArm = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/enemyArm.bmp");
+    textureEnemyLeg = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/enemyLeg.bmp");
+    textureEnemyHead = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/enemyHead.bmp");
+
     //glDisable(GL_TEXTURE_2D);
 
     glEnable(GL_LIGHT0);

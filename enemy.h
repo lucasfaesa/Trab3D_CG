@@ -33,12 +33,13 @@ class Enemy {
     GLfloat pDTheta2 = 0;
 
 private:
-    void DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloat R, GLfloat G, GLfloat B, GLfloat A);
-    void DesenhaCabeca(GLint index, GLfloat x, GLfloat y, GLfloat radius, GLfloat R,GLfloat G, GLfloat B);
-    void DesenhaPerna(GLint index, GLfloat x, GLfloat y, GLfloat theta1, GLfloat theta2, GLfloat theta3, GLfloat theta4);
-    void DesenhaBraco(GLint index, GLfloat x, GLfloat y, GLfloat theta1);
+    void DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloat R, GLfloat G, GLfloat B, GLfloat A,GLuint texture);
+    void DesenhaCabeca(GLint index, GLfloat x, GLfloat y, GLfloat radius, GLfloat R,GLfloat G, GLfloat B,GLuint textureHead);
+    void DesenhaPerna(GLint index, GLfloat x, GLfloat y, GLfloat theta1, GLfloat theta2, GLfloat theta3, GLfloat theta4, GLuint textureLeg);
+    void DesenhaBraco(GLint index, GLfloat x, GLfloat y, GLfloat theta1, GLuint textureArm);
     void GetEnemiesFromSvg();
-    void DesenhaEnemy(GLint index, GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2);
+    void DesenhaEnemy(GLint index, GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2,
+                      GLuint textureChest, GLuint textureArm, GLuint textureLeg, GLuint textureHead);
     void AddEnemiesToArray(int index, GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2){
         enemiesObj[index].gX = x;
         enemiesObj[index].gY = y;
@@ -65,7 +66,7 @@ private:
                 break;
         }
     }
-    void DesenhaTodos();
+    void DesenhaTodos(GLuint textureChest, GLuint textureArm, GLuint textureLeg, GLuint textureHead);
 
 public:
     Enemies enemiesObj[7] = {};
@@ -75,8 +76,8 @@ public:
         enemyImagePath = path;
     }
 
-    void Desenha(int index, Enemies enemy){
-        DesenhaTodos();
+    void Desenha(int index, Enemies enemy, GLuint textureChest, GLuint textureArm, GLuint textureLeg, GLuint textureHead){
+        DesenhaTodos(textureChest, textureArm, textureLeg, textureHead);
     };
     void GetFromSvg(){
         GetEnemiesFromSvg();
@@ -85,6 +86,7 @@ public:
         memcpy(x, enemiesObj, sizeof(x));
     };
 
+    void CreateEnemyHead();
     void RodaBraco(int index, GLfloat playerX, GLfloat playerY);
     void RodaPernaE1(int index, GLfloat inc);
     void RodaPernaE2(GLfloat inc);

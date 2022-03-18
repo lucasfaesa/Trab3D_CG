@@ -31,6 +31,7 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
         return;
     }
 
+
     GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1};
     GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
     GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
@@ -193,11 +194,11 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
         glNormal3f(0.0, -1.0, 0.0);	// Normal da face
         glTexCoord2f (0, 0);
         glVertex3f(width/2, height, -0);
-        glTexCoord2f (0, tilingTopDownX);
+        glTexCoord2f (0, tilingTopDownY);
         glVertex3f(width/2, height, 45.8);
-        glTexCoord2f (tilingTopDownY, tilingTopDownX);
+        glTexCoord2f (tilingTopDownX, tilingTopDownY);
         glVertex3f(-width/2,height, 45.8);
-        glTexCoord2f (tilingTopDownY, 0);
+        glTexCoord2f (tilingTopDownX, 0);
         glVertex3f(-width/2, height, -0); //z metade da altura do fundo azul
     glEnd();
 

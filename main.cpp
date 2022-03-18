@@ -231,7 +231,6 @@ void keyPress(unsigned char key, int x, int y)
             break;
         case 'z':
         case 'Z':
-            testYoffeset-= 1;
             glEnable(GL_LIGHT0);
             break;
         case 'x':
@@ -240,7 +239,6 @@ void keyPress(unsigned char key, int x, int y)
             break;
         case 'c':
         case 'C':
-            testYoffeset += 1;
             glDisable(GL_LIGHT0);
             break;
         case '+':
@@ -248,6 +246,30 @@ void keyPress(unsigned char key, int x, int y)
             break;
         case '-':
             zoom--;
+            break;
+        case 'u':
+            testXoffeset += 1;
+            cout << testXoffeset << endl;
+            break;
+        case 'j':
+            testXoffeset -=1;
+            cout << testXoffeset << endl;
+            break;
+        case 'i':
+            testYoffeset += 1;
+            cout << testYoffeset << endl;
+            break;
+        case 'k':
+            testYoffeset -=1;
+            cout << testYoffeset << endl;
+            break;
+        case 'o':
+            testZoffeset +=1;
+            cout << testZoffeset << endl;
+            break;
+        case 'l':
+            testZoffeset -=1;
+            cout << testZoffeset << endl;
             break;
 
 
@@ -923,8 +945,67 @@ void display(void)
     glClear (GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
     //cout << testYoffeset << endl;
 
-    GLfloat light_position[] = { -890, 1600 , 283.0, 0.0 };
-    glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
+    float playerPosX;
+    float playerPosY;
+    Player.GetPos(playerPosX,playerPosY);
+
+    // ###### global ilumination #############
+    //GLfloat light_position[] = { -890, 1600 , 283.0, 0.0 };
+    //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
+
+    glPushMatrix();
+
+        /*glRotatef(testZoffeset,1,0,0);
+        glRotatef(testXoffeset,0,1,0);
+        glRotatef(testYoffeset,0,0,1);
+        glDisable (GL_LIGHTING);
+        glColor3f (0.0, 1.0, 1.0);
+        glutWireCube (2);
+        glEnable (GL_LIGHTING);
+        GLfloat light_position[] = { 0, 0 , 0  , 1.0 };
+        glLightf(GL_LIGHT0,GL_SPOT_CUTOFF, 50.0);
+        glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+        glLightfv(  GL_LIGHT0, GL_SPOT_DIRECTION, light_position);*/
+
+        //glTranslatef(-157 + testXoffeset, -150 + testYoffeset , 25);
+
+        glTranslatef( playerPosX, playerPosY  , 24);
+       // glRotatef(testZoffeset,1,0,0);
+        //glRotatef(testXoffeset,0,1,0);
+        //glRotatef(testYoffeset,0,0,1);
+        GLfloat light_position[] = { 0, 0 , 0  , 1.0 };
+        GLfloat light_direction[] = { testXoffeset, testYoffeset , testZoffeset};
+        //glRotatef(testZoffeset,0,1,0);
+
+        //
+        //glLightfv(GL_LIGHT0, GL_DIFFUSE, light_position);
+        glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+        //
+        //glLightfv(GL_LIGHT0,GL_SPOT_EXPONENT, light_position);
+        glLightfv(  GL_LIGHT0, GL_SPOT_DIRECTION, light_direction); //valor de X é a direção pra onde
+                                                                                        //a spotlight tá apontando, no caso
+                                                                                        //positivo na minha aplicação é para frente
+                                                                                        //caso o player vire para trás é usar
+                                                                                        //o X negativo? depnde da movimentação
+                                                                                        // quanto maior o valor de X, mais devagar fica a variação em Y
+        glLightf(GL_LIGHT0,GL_SPOT_CUTOFF, 50.0);
+        //glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);
+
+
+
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef( playerPosX , playerPosY, 24);
+        glRotatef(testZoffeset,1,0,0);
+        glRotatef(testXoffeset,0,1,0);
+        glRotatef(testYoffeset,0,0,1);
+        glDisable (GL_LIGHTING);
+        glColor3f (0.0, 1.0, 1.0);
+        glutWireCube (2);
+        glEnable (GL_LIGHTING);
+    glPopMatrix();
+
     //glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -932,9 +1013,11 @@ void display(void)
     //glDisable (GL_LIGHTING);
     //gluLookAt(-250,-180,60, -130,-180,0, 0,1,0);
     //gluLookAt(-1,-180,500, -1,-180,0, 0,1,0); //2D
-    float playerPosX;
-    float playerPosY;
-    Player.GetPos(playerPosX,playerPosY);
+    //float playerPosX;
+    //float playerPosY;
+
+
+
 
     //gluLookAt(playerPosX +testXoffeset ,playerPosY+testYoffeset,50+testZoffeset, playerPosX,playerPosY,25, 0,1,0);
 

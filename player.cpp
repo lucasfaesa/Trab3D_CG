@@ -89,7 +89,7 @@ void Player::DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLflo
     else
         glScalef(-1,1,1);*/
 
-    GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1};
+    GLfloat materialEmission[] = { 0.30, 0.30, 0.30, 1};
     GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
     GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1};
@@ -195,12 +195,14 @@ void Player::DesenhaCabeca(GLfloat x, GLfloat y, GLfloat radius, GLfloat R, GLfl
     glRotatef(90,1,0,0);
     glRotatef(45,0,0,1);
     //glRotatef(-90,0,1,0);
-    /*if(!facingRight) glScalef(-1,1,1);
+    if(facingRight){
+        glScalef(-1,1,1);
+        glRotatef(-90,0,0,1);
+    }
 
-    glutSolidSphere(radius,20,10);*/
+    //glutSolidSphere(radius,20,10);
 
-
-    GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1};
+    GLfloat materialEmission[] = { 0.30, 0.30, 0.30, 1};
     GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
     GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1};
@@ -283,11 +285,12 @@ void Player::DesenhaPerna(GLfloat x, GLfloat y, GLfloat pEtheta1, GLfloat pEthet
     }
 }
 
-void Player::DesenhaPlayer(GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2,
+void Player::DesenhaPlayer(GLfloat x, GLfloat y, GLfloat rX, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2,
                            GLuint textureChest, GLuint textureArm, GLuint textureLeg, GLuint textureHead)
 {
     glPushMatrix();
         glTranslatef(x,y,25);
+        glRotatef(rY,0,1,0);
     if(facingRight)
         glScalef(1,1,1);
     else
@@ -584,6 +587,10 @@ void Player::MoveEmX(GLfloat dx, GLfloat timeDifference)
     gX += dx * timeDifference;
 
 }
+
+/*void Player::RotatePlayer(GLfloat ry, GLfloat timeDifference){
+    rY += ry * timeDifference;
+}*/
 
 bool Player::GetPlayerFacingPos(){
     return facingRight;

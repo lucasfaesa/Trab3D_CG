@@ -110,6 +110,8 @@ GLuint textureEnemyChest;
 GLuint textureEnemyHead;
 GLuint textureEnemyLeg;
 GLuint textureEnemyArm;
+GLuint textureSkyDay;
+GLuint textureSkyNight;
 
 int cameraMode = 1;
 int lightMode = 1;
@@ -220,6 +222,14 @@ void keyPress(unsigned char key, int x, int y)
         case 'w':
         case 'W':
             keyStatus[(int)('w')] = 1; //Using keyStatus trick
+            break;
+        case 'a':
+        case 'A':
+            keyStatus[(int)('a')] = 1; //Using keyStatus trick
+            break;
+        case 'd':
+        case 'D':
+            keyStatus[(int)('d')] = 1; //Using keyStatus trick
             break;
         case 't':
         case 'T':
@@ -831,6 +841,20 @@ void CheckKeyPress(GLdouble diference) {
             }
         }
     }
+
+    if(keyStatus[(int)('a')])
+    {
+        if(!canPlayerMove) return;
+
+        //Player.RotatePlayer(inc * 4, diference);
+    }
+
+    if(keyStatus[(int)('d')])
+    {
+        if(!canPlayerMove) return;
+
+        //Player.RotatePlayer(-inc * 4, diference);
+    }
 }
 
 void passive(int x1,int y1) {
@@ -1072,7 +1096,10 @@ void display(void)
 
 
     glEnable(GL_TEXTURE_2D);
-        Cenario.Desenha(texturePlatformsTop, texturePlatformsSide);
+        if(lightMode == 1)
+            Cenario.Desenha(texturePlatformsTop, texturePlatformsSide, textureSkyDay);
+        if(lightMode == 2)
+            Cenario.Desenha(texturePlatformsTop, texturePlatformsSide, textureSkyNight);
         if(drawPlayer)
             Player.Desenha(texturePlayerChest,texturePlayerArm,texturePlayerLeg,texturePlayerHead);
 
@@ -1154,7 +1181,7 @@ void init(int windowSize) {
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_LIGHTING);
     glShadeModel (GL_SMOOTH);
-    //glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     //glFrontFace(GL_CW);
     //glCullFace(GL_BACK);
     glDepthFunc(GL_LEQUAL);
@@ -1172,6 +1199,8 @@ void init(int windowSize) {
     textureEnemyLeg = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/enemyLeg.bmp");
     textureEnemyHead = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/enemyHead.bmp");
 
+    textureSkyDay = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/skybox.bmp");
+    textureSkyNight = LoadTextureRAW("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/textures/skyboxNight.bmp");
     //glDisable(GL_TEXTURE_2D);
 
     glEnable(GL_LIGHT0);

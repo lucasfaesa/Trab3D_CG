@@ -10,6 +10,7 @@ static bool facingRight = true;
 class Player {
     GLfloat gX;
     GLfloat gY;
+    GLfloat rY;
     GLfloat initialBTheta = 0;
     GLfloat bTheta = 0;
     GLfloat pETheta1 = 0;
@@ -24,7 +25,7 @@ void DesenhaCabeca(GLfloat x, GLfloat y, GLfloat radius, GLfloat R,GLfloat G, GL
 void DesenhaPerna(GLfloat x, GLfloat y, GLfloat theta1, GLfloat theta2, GLfloat theta3, GLfloat theta4, GLuint textureLeg);
 void DesenhaBraco(GLfloat x, GLfloat y, GLfloat theta1, GLuint textureArm);
 void DesenhaCollider();
-void DesenhaPlayer(GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2,
+void DesenhaPlayer(GLfloat x, GLfloat y,GLfloat rY, GLfloat bTheta, GLfloat pETheta1, GLfloat pETheta2, GLfloat pDTheta1, GLfloat pDTheta2,
                    GLuint textureChest, GLuint textureArm, GLuint textureLeg, GLuint textureHead);
 
 public:
@@ -32,6 +33,7 @@ public:
     Player(){
         gX = -157;
         gY = -180;
+        rY = 0;
         initialBTheta = 90;
         bTheta = -90;
         pETheta1 = 30;
@@ -40,7 +42,7 @@ public:
         pDTheta2 = 0;
     };
     void Desenha(GLuint textureChest, GLuint textureArm, GLuint textureLeg, GLuint textureHead){
-        DesenhaPlayer(gX, gY, bTheta, pETheta1, pETheta2, pDTheta1, pDTheta2, textureChest, textureArm,textureLeg,textureHead);
+        DesenhaPlayer(gX, gY,rY, bTheta, pETheta1, pETheta2, pDTheta1, pDTheta2, textureChest, textureArm,textureLeg,textureHead);
     };
     void CreatePlayerHead();
     void RodaBraco(GLfloat inc);
@@ -52,6 +54,7 @@ public:
     bool Atingido(int index, enemyTiro *enemyTiro);
     void MoveEmX(GLfloat dx, GLfloat timeDifference);
     void MoveEmY(GLfloat dy, bool &isJumping);
+    //void RotatePlayer(GLfloat rx, GLfloat timeDifference);
     void FreeFall (GLfloat dy);
     void ResetJumpDistance();
     void ResetPlayerPos();

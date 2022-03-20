@@ -21,9 +21,10 @@ class Cenario {
 
 private:
     void DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, string color, GLuint textureTop,GLuint textureSide);
+    void DesenhaBg(GLfloat x, GLfloat y, GLfloat height, GLfloat width, string color, GLuint textureTop);
     void DesenhaCirc(GLfloat x, GLfloat y, GLfloat radius, string color);
     void DesenhaParedeTest(GLuint earth);
-    void DesenhaCenario(GLuint textureGrassTop, GLuint textureGrassSide);
+    void DesenhaCenario(GLuint textureGrassTop, GLuint textureGrassSide, GLuint textureSky);
     void GetCenarioFromSvg();
     void AddBoxesToArray(int index, float x, float y, float h, float w, string color){
         boxesObj[index].xPos = x;
@@ -43,8 +44,8 @@ public:
     const char* ok(){
         return imagePath;
     }
-    void Desenha(GLuint textureGrassTop, GLuint textureGrassSide){
-        DesenhaCenario(textureGrassTop, textureGrassSide);
+    void Desenha(GLuint textureGrassTop, GLuint textureGrassSide, GLuint textureSky){
+        DesenhaCenario(textureGrassTop, textureGrassSide,textureSky);
     };
 
     void Test(GLuint earth){

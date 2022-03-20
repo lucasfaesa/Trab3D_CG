@@ -55,6 +55,8 @@ public:
     void FreeFall (GLfloat dy);
     void ResetJumpDistance();
     void ResetPlayerPos();
+    bool GetPlayerFacingPos();
+    void PlayerCameraMode(int mode);
     void MoveEmMenosY(GLfloat dy, bool jumping);
     void GetPos(GLfloat &xOut, GLfloat &yOut){
         xOut = gX;

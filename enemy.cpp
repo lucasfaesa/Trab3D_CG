@@ -58,7 +58,7 @@ void Enemy::DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloa
     glVertex3f(width/2, 0.0, 1.0);
     glEnd();*/
 
-    GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1};
+    GLfloat materialEmission[] = { 0.10, 0.10, 0.10, 1};
     GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
     GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1};

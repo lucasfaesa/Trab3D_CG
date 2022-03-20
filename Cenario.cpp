@@ -32,7 +32,7 @@ void Cenario::DesenhaRect(GLfloat x, GLfloat y, GLfloat height, GLfloat width, s
     }
 
 
-    GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1};
+    GLfloat materialEmission[] = { 0.10, 0.10, 0.10, 1};
     GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};
     GLfloat materialColorD[] = { 1.0, 1.0, 1.0, 1};
     GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1};

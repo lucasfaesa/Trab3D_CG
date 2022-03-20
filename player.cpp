@@ -30,6 +30,7 @@ typedef struct
 } OBJ;
 
 OBJ* objHead;
+int playerCameraMode = 3;
 
 float CabecaRadius = 1;
 float troncoHeight  = 3.8;
@@ -74,8 +75,11 @@ float maxRotE2 = 0;
 float minRotE2 = 0;
 bool reversed;
 
-
 OBJ *CreatePlayerSphere(double R, double space);
+
+void Player::PlayerCameraMode(int mode) {
+    playerCameraMode = mode;
+}
 
 void Player::DesenhaRect(GLfloat height, GLfloat width, GLfloat extrusion, GLfloat R, GLfloat G, GLfloat B, GLfloat A, GLuint texture)
 {
@@ -291,9 +295,11 @@ void Player::DesenhaPlayer(GLfloat x, GLfloat y, GLfloat bTheta, GLfloat pETheta
 
         glPushMatrix();
             if(!facingRight) glScalef(-1,1,1);
+            if(playerCameraMode == 3)
             DesenhaRect(troncoHeight,troncoWidth, troncoExtrusion, 0,1,0.3,1,textureChest); //desenhando base
         glPopMatrix();
-        DesenhaCabeca(0, troncoHeight + CabecaRadius, CabecaRadius, 0, 1, 0.3,textureHead);
+        if(playerCameraMode == 3)
+            DesenhaCabeca(0, troncoHeight + CabecaRadius, CabecaRadius, 0, 1, 0.3,textureHead);
         DesenhaPerna(0, 0,pETheta1,pETheta2, pDTheta1, pDTheta2,textureLeg);
         DesenhaBraco(0,troncoHeight/2,bTheta,textureArm);
 
@@ -577,6 +583,10 @@ void Player::MoveEmX(GLfloat dx, GLfloat timeDifference)
 
     gX += dx * timeDifference;
 
+}
+
+bool Player::GetPlayerFacingPos(){
+    return facingRight;
 }
 
 void Player::ResetPlayerPos() {

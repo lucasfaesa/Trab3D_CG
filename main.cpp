@@ -92,12 +92,13 @@ float fpCamY;
 float fpCamX;
 
 double camXYAngle=0;
-double camXZAngle=0;
+double camXZAngle=130;
 int lastX = 0;
 int lastY = 0;
-int zoom = 50;
+int zoom = 20;
 bool canMoveCamera = false;
 float lastY1;
+float mouseDelta;
 
 GLuint texturePlatformsTop;
 GLuint texturePlatformsSide;
@@ -109,6 +110,9 @@ GLuint textureEnemyChest;
 GLuint textureEnemyHead;
 GLuint textureEnemyLeg;
 GLuint textureEnemyArm;
+
+int cameraMode = 1;
+int lightMode = 1;
 
 Tiro * tiro = NULL; //Um tiro por vez
 enemyTiro * enemyTiroArray[7] = {nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr};
@@ -209,13 +213,13 @@ void keyPress(unsigned char key, int x, int y)
 {
     switch (key)
     {
-        case 'a':
-        case 'A':
-            keyStatus[(int)('a')] = 1; //Using keyStatus trick
+        case 's':
+        case 'S':
+            keyStatus[(int)('s')] = 1; //Using keyStatus trick
             break;
-        case 'd':
-        case 'D':
-            keyStatus[(int)('d')] = 1; //Using keyStatus trick
+        case 'w':
+        case 'W':
+            keyStatus[(int)('w')] = 1; //Using keyStatus trick
             break;
         case 't':
         case 'T':
@@ -248,11 +252,11 @@ void keyPress(unsigned char key, int x, int y)
             zoom--;
             break;
         case 'u':
-            testXoffeset += 1;
+            testXoffeset += 1.0;
             cout << testXoffeset << endl;
             break;
         case 'j':
-            testXoffeset -=1;
+            testXoffeset -=1.0;
             cout << testXoffeset << endl;
             break;
         case 'i':
@@ -263,6 +267,18 @@ void keyPress(unsigned char key, int x, int y)
             testYoffeset -=1;
             cout << testYoffeset << endl;
             break;
+        case 'n':
+            if(lightMode == 1){
+                lightMode = 2;
+                cout << lightMode << endl;
+                return;
+            }
+            if(lightMode == 2){
+                lightMode = 1;
+                cout << lightMode << endl;
+                return;
+            }
+            break;
         case 'o':
             testZoffeset +=1;
             cout << testZoffeset << endl;
@@ -271,7 +287,25 @@ void keyPress(unsigned char key, int x, int y)
             testZoffeset -=1;
             cout << testZoffeset << endl;
             break;
-
+        case '1':
+            cameraMode = 1;
+            Player.PlayerCameraMode(cameraMode);
+            break;
+        case '2':
+            cameraMode = 2;
+            Player.PlayerCameraMode(cameraMode);
+            break;
+        case '3':
+            cameraMode = 3;
+            Player.PlayerCameraMode(cameraMode);
+            break;
+        case ' ':
+            if(!canPlayerMove) return;
+            pressingJumpKey = true;
+            if(playerCollidingBottom){
+                isJumping = true;
+            }
+            break;
 
         case 27 :
             exit(0);
@@ -282,6 +316,14 @@ void keyPress(unsigned char key, int x, int y)
 void keyup(unsigned char key, int x, int y)
 {
     keyStatus[(int)(key)] = 0;
+    switch (key)
+    {
+        case ' ':
+            if(!canPlayerMove) return;
+            pressingJumpKey = false;
+            isJumping = false;
+        break;
+    }
     glutPostRedisplay();
 }
 
@@ -296,7 +338,7 @@ void ResetKeyStatus()
 void init(int w, int h)
 {
     srand (time(NULL));
-
+    Player.PlayerCameraMode(cameraMode);
     Enemy.GetFromSvg();
     Cenario.GetFromSvg();
 
@@ -343,8 +385,8 @@ void init(int w, int h)
 
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
 
-    //todo fov para first person e third person
-    gluPerspective (50,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
+
+    gluPerspective (90 + testXoffeset,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
 
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
     //gluOrtho2D(-45.9,45.9,-45.9,45.9);
@@ -762,7 +804,7 @@ void CheckKeyPress(GLdouble diference) {
 
     double inc = INC_KEYIDLE;
     //Treat keyPress
-    if(keyStatus[(int)('a')])
+    if(keyStatus[(int)('s')])
     {
         if(!canPlayerMove) return;
 
@@ -776,7 +818,7 @@ void CheckKeyPress(GLdouble diference) {
         }
     }
 
-    if(keyStatus[(int)('d')])
+    if(keyStatus[(int)('w')])
     {
         if(!canPlayerMove) return;
 
@@ -803,7 +845,9 @@ void passive(int x1,int y1) {
         deltaY = 45;
     }
     Player.RodaBraco(-deltaY);
+    mouseDelta = -deltaY;
 
+    //cout << mouseDelta << endl;
 
     if(canMoveCamera){
 
@@ -825,7 +869,6 @@ void passive(int x1,int y1) {
 
         lastY1 = y1;
     }
-
 
 
   //  cout << y1 - 150 << endl;
@@ -858,17 +901,18 @@ void MyMouse(int button, int state, int x, int y)
 
         case GLUT_RIGHT_BUTTON:
             if(state == GLUT_DOWN){
-                if(!canPlayerMove) return;
-                pressingJumpKey = true;
-                if(playerCollidingBottom){
-                    isJumping = true;
+                switch (cameraMode) {
+                    case 2:
+                        cameraMode = 1;
+                        break;
+                    case 1:
+                        cameraMode = 2;
+                        break;
                 }
             }
 
             if(state == GLUT_UP){
-                if(!canPlayerMove) return;
-                pressingJumpKey = false;
-                isJumping = false;
+                //do something here
             }
             break;
 
@@ -949,80 +993,56 @@ void display(void)
     float playerPosY;
     Player.GetPos(playerPosX,playerPosY);
 
-    // ###### global ilumination #############
-    //GLfloat light_position[] = { -890, 1600 , 283.0, 0.0 };
-    //glLightfv(  GL_LIGHT0, GL_POSITION, light_position);
+    switch (lightMode) {
+        case 1: {
+            GLfloat light_position_ambient[] = {-890, 1600, 283.0, 0.0};
+            glLightfv(GL_LIGHT0, GL_POSITION, light_position_ambient);
+            break;
+        }
+        case 2: {
+            glPushMatrix();
+            glTranslatef(playerPosX + 1, playerPosY + 2, 25);
+            GLfloat light_position[] = {0, 0, 0, 1.0};
+            GLfloat light_direction[] = {0, 0, 0};
 
-    glPushMatrix();
+            if (Player.GetPlayerFacingPos()) {
+                light_direction[0] = 10;
+                light_direction[1] = mouseDelta;
+                light_direction[2] = testZoffeset;
+            } else {
+                light_direction[0] = -10;
+                light_direction[1] = mouseDelta;
+                light_direction[2] = testZoffeset;
+            }
 
-        /*glRotatef(testZoffeset,1,0,0);
-        glRotatef(testXoffeset,0,1,0);
-        glRotatef(testYoffeset,0,0,1);
-        glDisable (GL_LIGHTING);
-        glColor3f (0.0, 1.0, 1.0);
-        glutWireCube (2);
-        glEnable (GL_LIGHTING);
-        GLfloat light_position[] = { 0, 0 , 0  , 1.0 };
-        glLightf(GL_LIGHT0,GL_SPOT_CUTOFF, 50.0);
-        glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-        glLightfv(  GL_LIGHT0, GL_SPOT_DIRECTION, light_position);*/
+            glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+            glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light_direction);
+            glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 50.0);
 
-        //glTranslatef(-157 + testXoffeset, -150 + testYoffeset , 25);
-
-        glTranslatef( playerPosX, playerPosY  , 24);
-       // glRotatef(testZoffeset,1,0,0);
-        //glRotatef(testXoffeset,0,1,0);
-        //glRotatef(testYoffeset,0,0,1);
-        GLfloat light_position[] = { 0, 0 , 0  , 1.0 };
-        GLfloat light_direction[] = { testXoffeset, testYoffeset , testZoffeset};
-        //glRotatef(testZoffeset,0,1,0);
-
-        //
-        //glLightfv(GL_LIGHT0, GL_DIFFUSE, light_position);
-        glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-        //
-        //glLightfv(GL_LIGHT0,GL_SPOT_EXPONENT, light_position);
-        glLightfv(  GL_LIGHT0, GL_SPOT_DIRECTION, light_direction); //valor de X é a direção pra onde
-                                                                                        //a spotlight tá apontando, no caso
-                                                                                        //positivo na minha aplicação é para frente
-                                                                                        //caso o player vire para trás é usar
-                                                                                        //o X negativo? depnde da movimentação
-                                                                                        // quanto maior o valor de X, mais devagar fica a variação em Y
-        glLightf(GL_LIGHT0,GL_SPOT_CUTOFF, 50.0);
-        //glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);
+            glPopMatrix();
+            break;
+        }
+    }
+    // ###### global illumination #############
 
 
+    // ###### flashlight illumination #############
 
-    glPopMatrix();
 
-    glPushMatrix();
-        glTranslatef( playerPosX , playerPosY, 24);
+    /*glPushMatrix();
+        glTranslatef( playerPosX + testXoffeset , playerPosY + testYoffeset, 25);
         glRotatef(testZoffeset,1,0,0);
         glRotatef(testXoffeset,0,1,0);
         glRotatef(testYoffeset,0,0,1);
         glDisable (GL_LIGHTING);
         glColor3f (0.0, 1.0, 1.0);
-        glutWireCube (2);
+        glutWireCube (0.5);
         glEnable (GL_LIGHTING);
-    glPopMatrix();
+    glPopMatrix();*/
 
-    //glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
 
-    //glDisable (GL_LIGHTING);
-    //gluLookAt(-250,-180,60, -130,-180,0, 0,1,0);
-    //gluLookAt(-1,-180,500, -1,-180,0, 0,1,0); //2D
-    //float playerPosX;
-    //float playerPosY;
-
-
-
-
-    //gluLookAt(playerPosX +testXoffeset ,playerPosY+testYoffeset,50+testZoffeset, playerPosX,playerPosY,25, 0,1,0);
-
-    //float yValue = sin((camY * M_PI / 180));
-    //cout << playerPosY +zoom* sin((camY*M_PI/180)) << endl;
     float yValue = sin(camXYAngle*M_PI/180);
     if(yValue < -0.80){
         yValue = -0.80;
@@ -1032,53 +1052,37 @@ void display(void)
         yValue = 0.80;
         cameraReachedTop = true;
     }
-    //cout << yValue <<" " <<cameraReachedTop <<" " << cameraReachedBottom<< endl;
-    //carPosition + vec3(20*cos(carAngle), 10,20*sin(carAngle))
-    //cout << "y: " << yValue << endl;
-
-    // #### Third person camera ##########
-    gluLookAt(playerPosX + zoom * cos(camXZAngle*M_PI/180),
-              playerPosY + zoom * yValue,
-              25         + zoom * sin(camXZAngle*M_PI/180),
-               playerPosX, playerPosY, 25,
-                    0, 1, 0);
 
 
-    //cout << testYoffeset << endl;
-    //### first person camera ########
-    //gluLookAt(playerPosX + 0.2,playerPosY + 2.7,25, playerPosX + 200,-fpCamY,25, 0,1,0);
+    switch (cameraMode) {
+        case 3:
+            gluLookAt(playerPosX + zoom * cos(camXZAngle*M_PI/180),
+                      playerPosY + zoom * yValue,
+                      25         + zoom * sin(camXZAngle*M_PI/180),
+                      playerPosX, playerPosY, 25,
+                      0, 1, 0);
+            break;
+        case 2:
+            gluLookAt(playerPosX + 0.2,playerPosY + 2.7,25, playerPosX + 200,-fpCamY,25, 0,1,0);
+            break;
+        case 1:
+            gluLookAt(playerPosX + 0.2,playerPosY + 4.5,25, playerPosX + 200,-145 + testYoffeset,25, 0,1,0);
+           break;
+    }
 
 
     glEnable(GL_TEXTURE_2D);
-    Cenario.Desenha(texturePlatformsTop, texturePlatformsSide);
-    if(drawPlayer)
-        Player.Desenha(texturePlayerChest,texturePlayerArm,texturePlayerLeg,texturePlayerHead);
-    //Cenario.Test(texturePlatforms);
+        Cenario.Desenha(texturePlatformsTop, texturePlatformsSide);
+        if(drawPlayer)
+            Player.Desenha(texturePlayerChest,texturePlayerArm,texturePlayerLeg,texturePlayerHead);
 
-    for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
-        if(enemiesArray[i].canBeDrawn)
-            Enemy.Desenha(i, enemiesArray[i],textureEnemyChest,textureEnemyArm,textureEnemyLeg,textureEnemyHead);
-    }
+        for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+            if(enemiesArray[i].canBeDrawn)
+                Enemy.Desenha(i, enemiesArray[i],textureEnemyChest,textureEnemyArm,textureEnemyLeg,textureEnemyHead);
+        }
     glDisable(GL_TEXTURE_2D);
-    //glEnable(GL_LIGHTING);
-    /*if(drawPlayer)
-        Player.Desenha();*/
 
     if (tiro) tiro->Desenha();
-
-    /*glEnable(GL_TEXTURE_2D);
-    glPushMatrix();
-
-        glTranslatef(-157,-180,-12);
-        glScalef(70,70,1);
-        glRotatef(90,1,0,0);
-        //glutSolidCube(2.0);
-        DisplayPlane (texturePlatforms);
-    glPopMatrix();
-
-    glDisable(GL_TEXTURE_2D);*/
-
-
 
     if(canEnemiesShoot){
         for(int i=0; i<sizeof(enemyTiroArray)/sizeof(enemyTiroArray[0]); i++){

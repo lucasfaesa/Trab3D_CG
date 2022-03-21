@@ -371,6 +371,11 @@ void Cenario::GetCenarioFromSvg() {
     tinyxml2::XMLDocument doc;
     doc.LoadFile(imagePath);
 
+    float blueBoxWidth = 0;
+    float blueBoxX = 0;
+    float blueBoxY = 0;
+    float blueBoxHeight = 0;
+
     tinyxml2::XMLElement *levelElement = doc.FirstChildElement("svg");
     for (tinyxml2::XMLElement *child = levelElement->FirstChildElement("rect");
          child != NULL; child = child->NextSiblingElement("rect")) {
@@ -385,9 +390,14 @@ void Cenario::GetCenarioFromSvg() {
         float iX = strtof(pAttrX, NULL);
         float iY = strtof(pAttrY, NULL);
 
-        /*if((int)iWidth == 364){
-            continue;
-        }*/
+        const char str = *pAttrFill;
+
+        if(strcmp(pAttrFill,"blue") == 0){
+            blueBoxWidth = iWidth;
+            blueBoxX = iX;
+            blueBoxY = iY;
+            blueBoxHeight = iHeight;
+        }
 
         Cenario::AddBoxesToArray(cont,iX,-iY,-iHeight,iWidth, child->Attribute("fill")); //invetendo Y e altura para desenho correto
         cont++;
@@ -408,7 +418,7 @@ void Cenario::GetCenarioFromSvg() {
     }
 
     //#temp
-    Cenario::AddBoxesToArray(cont, -163.5, -187.2, -10,364.1373,"black");
+    Cenario::AddBoxesToArray(cont, blueBoxX, -blueBoxY - blueBoxHeight, -10,blueBoxWidth,"black");
     //#temp
     cont = 0;
 }

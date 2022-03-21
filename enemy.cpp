@@ -162,11 +162,11 @@ void Enemy::DesenhaCabeca(GLint index, GLfloat x, GLfloat y, GLfloat radius, GLf
     glTranslatef(x,y,0);
     glRotatef(90,1,0,0);
     glRotatef(45,0,0,1);
-    //glRotatef(-90,0,1,0);
-    /*if(!facingRight) glScalef(-1,1,1);
 
-    glutSolidSphere(radius,20,10);*/
-
+    if(enemyFacingRight[index]){
+        glScalef(-1,1,1);
+        glRotatef(-90,0,0,1);
+    }
 
     GLfloat materialEmission[] = { 0.00, 0.00, 0.00, 1};
     GLfloat materialColorA[] = { 0.2, 0.2, 0.2, 1};

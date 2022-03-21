@@ -88,6 +88,8 @@ float testXoffeset = 0;
 float testYoffeset = 1;
 float testZoffeset = 0;
 
+float endGameX = 0;
+
 float fpCamY;
 float fpCamX;
 
@@ -349,8 +351,8 @@ void init(int w, int h)
 {
     srand (time(NULL));
     Player.PlayerCameraMode(cameraMode);
-    Enemy.GetFromSvg();
-    Cenario.GetFromSvg();
+   // Enemy.GetFromSvg();
+   // Cenario.GetFromSvg();
 
     Cenario.GetBoxesArray(boxesArray);
     Enemy.GetEnemiesArray(enemiesArray);
@@ -506,7 +508,7 @@ void CheckPlayerGameWon() {
     float y;
     Player.GetPos(x,y);
 
-    if(x >= 190 && y<= -170 && !gameWon){
+    if(x >= (endGameX - 5) && !gameWon){
         gameWon = true;
         canShowText = true;
     }
@@ -558,7 +560,7 @@ void CheckEnemiesCollision() {
         for (Boxes box: boxesArray) {
             if (box.height == 0) break;
 
-            if((int)box.width == 364 && (int)box.height == -91){
+            if(box.color == "blue"){
                 continue;
             }
 
@@ -730,6 +732,16 @@ void CheckPlayerCollision() {
         if(previousPlayerTop < boxBottom && currentPlayerTop >= boxBottom && currentPlayerRight > boxLeft && currentPlayerLeft < boxRight){
             contCollisionTop++;
         }
+
+        if(box.color == "blue"){
+            endGameX = boxRight;
+            if(currentPlayerLeft < boxLeft + 0.1)
+                contCollisionLeft++;
+            if(currentPlayerRight > boxRight - 0.1)
+                contCollisionRight++;
+
+        }
+
     }
 
     for (Enemies enemy : enemiesArray){
@@ -830,6 +842,7 @@ void CheckKeyPress(GLdouble diference) {
 
     if(keyStatus[(int)('w')])
     {
+
         if(!canPlayerMove) return;
 
         if(!playerCollidingOnRightSide) {
@@ -1066,6 +1079,7 @@ void display(void)
 
     glLoadIdentity();
 
+    ExibirTexto();
 
     float yValue = sin(camXYAngle*M_PI/180);
     if(yValue < -0.80){
@@ -1087,10 +1101,16 @@ void display(void)
                       0, 1, 0);
             break;
         case 2:
-            gluLookAt(playerPosX + 0.2,playerPosY + 2.7,25, playerPosX + 200,-fpCamY,25, 0,1,0);
+            if(Player.GetPlayerFacingPos())
+                gluLookAt(playerPosX + 0.2,playerPosY + 2.7,25, playerPosX + 200,-fpCamY,25, 0,1,0);
+            else
+                gluLookAt(playerPosX - 0.2,playerPosY + 2.7,25, playerPosX - 200,-fpCamY,25, 0,1,0);
             break;
         case 1:
-            gluLookAt(playerPosX + 0.2,playerPosY + 4.5,25, playerPosX + 200,-145 + testYoffeset,25, 0,1,0);
+            if(Player.GetPlayerFacingPos())
+                gluLookAt(playerPosX + 0.2,playerPosY + 4.5,25, playerPosX + 800,-176,25, 0,1,0);
+            else
+                gluLookAt(playerPosX - 0.2,playerPosY + 4.5,25, playerPosX - 800,-176,25, 0,1,0);
            break;
     }
 
@@ -1133,8 +1153,6 @@ void init(int windowSize) {
         Cenario.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
         Enemy.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
     }
-
-
 
     srand (time(NULL));
 

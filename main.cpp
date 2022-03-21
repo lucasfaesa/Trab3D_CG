@@ -149,9 +149,42 @@ const GLint Height = 500;
 
 static char str[1000];
 void * font = GLUT_BITMAP_9_BY_15;
+
+void RasterChars(GLfloat x, GLfloat y, GLfloat z, const char * text, double r, double g, double b)
+{
+    //Push to recover original attributes
+    glPushAttrib(GL_ENABLE_BIT);
+    glDisable(GL_LIGHTING);
+    glDisable(GL_TEXTURE_2D);
+    //Draw text in the x, y, z position
+    glColor3f(r,g,b);
+    glRasterPos3f(x, y, z);
+    const char* tmpStr;
+    tmpStr = text;
+    while( *tmpStr ){
+        glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *tmpStr);
+        tmpStr++;
+    }
+    glPopAttrib();
+}
+
+void PrintText(GLfloat x, GLfloat y, const char * text, double r, double g, double b)
+{
+    //Draw text considering a 2D space (disable all 3d features)
+    glMatrixMode (GL_PROJECTION);
+    //Push to recover original PROJECTION MATRIX
+    glPushMatrix();
+    glLoadIdentity ();
+    glOrtho (0, 1, 0, 1, -1, 1);
+    RasterChars(x, y, 0, text, r, g, b);
+    glPopMatrix();
+    glMatrixMode (GL_MODELVIEW);
+}
+
 void ExibirTexto()
 {
     if(!canShowText) return;
+
     float x;
     float y;
     Player.GetPos(x,y);
@@ -160,13 +193,15 @@ void ExibirTexto()
     //Cria a string a ser impressa
     char *tmpStr;
     if(gameWon){
-        sprintf(str, "Parabens, voce venceu! Aperte 'R' para reiniciar");
+        //sprintf(str, "Parabens, voce venceu! Aperte 'R' para reiniciar");
+        PrintText(0.1, 0.5, "Parabens, voce venceu! Aperte 'R' para reiniciar", 1,0,0);
         canPlayerShoot = false;
         canPlayerMove = false;
         canEnemiesShoot = false;
         canEnemiesMove = false;
     }else{
-        sprintf(str, "Tente novamente! Aperte 'R' para reiniciar");
+        //sprintf(str, "Tente novamente! Aperte 'R' para reiniciar");
+        PrintText(0.1, 0.5, "Tente novamente! Aperte 'R' para reiniciar", 1,0,0);
         canPlayerShoot = false;
         canPlayerMove = false;
         canEnemiesShoot = false;
@@ -1026,6 +1061,7 @@ void display(void)
     glClear (GL_COLOR_BUFFER_BIT |GL_DEPTH_BUFFER_BIT);
     //cout << testYoffeset << endl;
 
+
     float playerPosX;
     float playerPosY;
     Player.GetPos(playerPosX,playerPosY);
@@ -1078,6 +1114,7 @@ void display(void)
     glPopMatrix();*/
 
     glLoadIdentity();
+
 
     ExibirTexto();
 

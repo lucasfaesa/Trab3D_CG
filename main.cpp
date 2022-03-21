@@ -30,30 +30,30 @@ bool test = false;
 Boxes boxesArray[50] = {};
 Enemies enemiesArray[50] = {};
 
-bool manuallySetPath;
+bool manuallySetPath = true;
 
 bool playerCollidingOnRightSide;
 bool playerCollidingOnLeftSide;
 bool playerCollidingBottom;
 bool playerCollidingTop;
 
-bool enemyCollidingRightSide[7] = {};
-bool enemyCollidingLeftSide[7] = {};
-bool enemyCollidingBottom[7] = {};
-bool enemyCollidingTop[7] = {};
+bool enemyCollidingRightSide[50] = {};
+bool enemyCollidingLeftSide[50] = {};
+bool enemyCollidingBottom[50] = {};
+bool enemyCollidingTop[50] = {};
 
-bool enemyChangedDirectionNoGround[7] = {};
-bool enemyReachedGround[7] = {};
+bool enemyChangedDirectionNoGround[50] = {};
+bool enemyReachedGround[50] = {};
 
 float previousPlayerLeft = 0;
 float previousPlayerRight = 0;
 float previousPlayerTop = 0;
 float previousPlayerBottom = 0;
 
-float previousEnemyLeft[7] = {};
-float previousEnemyRight[7] = {};
-float previousEnemyTop[7] = {};
-float previousEnemyBottom[7] = {};
+float previousEnemyLeft[50] = {};
+float previousEnemyRight[50] = {};
+float previousEnemyTop[50] = {};
+float previousEnemyBottom[50] = {};
 
 float currentPlayerBottom = 0;
 float currentPlayerRight =0;
@@ -643,7 +643,7 @@ void CheckEnemiesCollision() {
 
             float boxLeft = x - 2 / 2;  //metade da largura do tronco
             float boxRight = x +  2 / 2; //metade da largura do tronco
-            float boxTop = y + 5.6;;
+            float boxTop = y + 5.6;
             float boxBottom = y - 3.6; //perna height x 2
 
             //devido a contagem de colisões com varias caixas, apenas uma irá ter uma colisao no topo, se não houver um cont de colisões

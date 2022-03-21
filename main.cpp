@@ -299,12 +299,12 @@ void keyPress(unsigned char key, int x, int y)
             zoom--;
             break;
         case 'u':
-            testXoffeset += 1.0;
-            cout << testXoffeset << endl;
+            enemyTiroDelay += 10.0;
+            cout << enemyTiroDelay << endl;
             break;
         case 'j':
-            testXoffeset -=1.0;
-            cout << testXoffeset << endl;
+            enemyTiroDelay -= 10.0;
+            cout << enemyTiroDelay << endl;
             break;
         case 'i':
             testYoffeset += 1;

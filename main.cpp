@@ -433,7 +433,7 @@ void init(int w, int h)
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
 
 
-    gluPerspective (90 + testXoffeset,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
+    gluPerspective (90,(GLfloat)Width/(GLfloat)Width,0.1, 1000);
 
     //glTranslatef(camMove/45.9 + 3.427/*offset*/,3.08/*offset*/,0);
     //gluOrtho2D(-45.9,45.9,-45.9,45.9);
@@ -628,6 +628,41 @@ void CheckEnemiesCollision() {
                 contCollisionTop++;
             }
         }
+
+        if(drawPlayer){
+            float x;
+            float y;
+            Player.GetPos(x,y);
+
+            float boxLeft = x - 2 / 2;  //metade da largura do tronco
+            float boxRight = x +  2 / 2; //metade da largura do tronco
+            float boxTop = y + 5.6;;
+            float boxBottom = y - 3.6; //perna height x 2
+
+            //devido a contagem de colisões com varias caixas, apenas uma irá ter uma colisao no topo, se não houver um cont de colisões
+            //a proxima verificação de colisão dará false, pois naquela caixa especifica não há o player em cima;
+
+            if (currentEnemyBottom <= boxTop && currentEnemyTop > boxBottom && currentEnemyRight > boxLeft && currentEnemyLeft < boxRight) {
+                contCollisionBottom++;
+            }
+
+            if (previousEnemyRight[i] < boxLeft && currentEnemyRight >= boxLeft && currentEnemyBottom + 0.32 < boxTop &&
+                currentEnemyTop > boxBottom) {
+                contCollisionRight++;
+            }
+
+            if (previousEnemyLeft[i] > boxRight && currentEnemyLeft <= boxRight && currentEnemyBottom + 0.32 < boxTop &&
+                currentEnemyTop > boxBottom) {
+                contCollisionLeft++;
+
+            }
+
+            if (previousEnemyTop[i] < boxBottom && currentEnemyTop >= boxBottom && currentEnemyRight > boxLeft &&
+                currentEnemyLeft < boxRight) {
+                contCollisionTop++;
+            }
+        }
+
 
         if (contCollisionBottom > 0) {
             enemyCollidingBottom[i] = true;

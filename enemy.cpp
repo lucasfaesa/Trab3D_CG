@@ -320,6 +320,8 @@ void Enemy::GetEnemiesFromSvg() {
 void Enemy::DesenhaTodos(GLuint textureChest, GLuint textureArm, GLuint textureLeg, GLuint textureHead) {
 
     for(int i =0; i<sizeof(enemiesObj)/sizeof(enemiesObj[0]); i++){
+        if(enemiesObj[i].gX == 0 && enemiesObj[i].gY == 0) break;
+
         if(enemiesObj[i].canBeDrawn)
             DesenhaEnemy(i,enemiesObj[i].gX,enemiesObj[i].gY,enemiesObj[i].bTheta,enemiesObj[i].pETheta1,enemiesObj[i].pETheta2,enemiesObj[i].pDTheta1,enemiesObj[i].pDTheta2,
                          textureChest, textureArm, textureLeg, textureHead);

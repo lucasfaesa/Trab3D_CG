@@ -69,7 +69,7 @@ private:
     void DesenhaTodos(GLuint textureChest, GLuint textureArm, GLuint textureLeg, GLuint textureHead);
 
 public:
-    Enemies enemiesObj[7] = {};
+    Enemies enemiesObj[50] = {};
     const char *enemyImagePath = "";
 
     void SetImagePath(const char* path){
@@ -82,7 +82,7 @@ public:
     void GetFromSvg(){
         GetEnemiesFromSvg();
     }
-    void GetEnemiesArray(Enemies (&x)[7]){
+    void GetEnemiesArray(Enemies (&x)[50]){
         memcpy(x, enemiesObj, sizeof(x));
     };
 

@@ -28,7 +28,7 @@ bool isJumping = false;
 bool test = false;
 
 Boxes boxesArray[50] = {};
-Enemies enemiesArray[7] = {};
+Enemies enemiesArray[50] = {};
 
 bool manuallySetPath;
 
@@ -405,6 +405,8 @@ void init(int w, int h)
     float enemyPosX[7] = {};
     float enemyPosY[7] = {};
     for(int i=0;i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++) {
+        if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
+
         Enemy.GetPos(i, enemyPosX[i], enemyPosY[i]);
 
         previousEnemyBottom[i] = enemyPosY[i] - 3.6; //perna height x 2
@@ -500,6 +502,7 @@ void RandomEnemyShoot(GLdouble diference) {
     float y;
     Player.GetPos(x,y);
     for(int i =0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+        if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
         Enemy.RodaBraco(i,x,y);
     }
 }
@@ -511,6 +514,8 @@ void ResetGame() {
     canPlayerShoot = true;
 
     for(int i =0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+        if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
+
         Enemy.SetEnemyVisibility(i,true);
         enemiesArray[i].canBeDrawn = true;
     }
@@ -580,6 +585,8 @@ void CheckEnemiesCollision() {
     for(int i=0;i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++) {
     //for (int i = 0; i < 1; i++) {
         //i = 3;
+        if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
+
         Enemy.GetPos(i, enemyPosX[i], enemyPosY[i]);
 
         currentEnemyBottom = enemyPosY[i] - 3.6; //perna height x 2
@@ -719,6 +726,8 @@ void MoveEnemies(GLdouble diference) {
     if(!canEnemiesMove) return;
 
     for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++) {
+        if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
+
         Enemy.MoveEmX(i, enemiesArray[i].speed, diference);
         Enemy.RodaPernaD1(i, enemiesArray[i].speed);
         Enemy.RodaPernaE1(i, enemiesArray[i].speed);
@@ -731,6 +740,8 @@ void CheckPlayerTiro(GLdouble diference) {
         tiro->Move(diference);
 
         for(int i =0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+            if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
+
             if(Enemy.Atingido(i,tiro)){
                 Enemy.SetEnemyVisibility(i,false);
                 enemiesArray[i].canBeDrawn = false;
@@ -816,9 +827,13 @@ void CheckPlayerCollision() {
 
     for (Enemies enemy : enemiesArray){
 
+        if(enemy.gX == 0 && enemy.gY == 0) break;
+
         float x;
         float y;
         for(int i=0;i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+            if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
+
             Enemy.GetPos(i, x,y);
             enemiesArray[i].gX = x;
             enemiesArray[i].gY = y;
@@ -1196,6 +1211,8 @@ void display(void)
             Player.Desenha(texturePlayerChest,texturePlayerArm,texturePlayerLeg,texturePlayerHead);
 
         for(int i=0; i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++){
+            if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
+
             if(enemiesArray[i].canBeDrawn)
                 Enemy.Desenha(i, enemiesArray[i],textureEnemyChest,textureEnemyArm,textureEnemyLeg,textureEnemyHead);
         }
@@ -1222,8 +1239,8 @@ void init(int windowSize) {
         Cenario.SetImagePath(x.c_str());
         Enemy.SetImagePath(x.c_str());
     }else {
-        Cenario.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
-        Enemy.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste.svg");
+        Cenario.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste_2.svg");
+        Enemy.SetImagePath("C:/Users/lucas/Desktop/Computacao_Grafica/Trab3D/arena_teste_2.svg");
     }
 
     srand (time(NULL));
@@ -1246,10 +1263,12 @@ void init(int windowSize) {
     previousPlayerTop = playerPosY + 5.6;
 
     //## ENEMY
-    float enemyPosX[7] = {};
-    float enemyPosY[7] = {};
+    float enemyPosX[50] = {};
+    float enemyPosY[50] = {};
     for(int i=0;i<sizeof(enemiesArray)/sizeof(enemiesArray[0]); i++) {
         Enemy.GetPos(i, enemyPosX[i], enemyPosY[i]);
+
+        if(enemiesArray[i].gX == 0 && enemiesArray[i].gY == 0) break;
 
         previousEnemyBottom[i] = enemyPosY[i] - 3.6; //perna height x 2
         previousEnemyRight[i] = enemyPosX[i] + 2 / 2; //metade da largura do tronco
